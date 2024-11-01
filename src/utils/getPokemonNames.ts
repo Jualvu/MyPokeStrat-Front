@@ -1,10 +1,27 @@
 import axios from "axios";
+// import useFetch from "../hooks/useFetch";
+
+// type DataType = {
+//     results: {
+//         name: string;
+//     }[]
+// }
 
 type typeObject = {
     name:string
   }
 
-const getPokemonNames = async() => { 
+const getPokemonNames = async()  => { 
+
+    // const {data} = useFetch<DataType>(`https://pokeapi.co/api/v2/pokemon/`);
+
+
+    // const pokeNamesList: string[] = data?.results;
+
+    // const pokeNamesList: string[] = [];
+    // data?.results?.map( (name: string) => {
+
+    // })
 
     let pokeNames: string[] = [];
 
@@ -17,6 +34,7 @@ const getPokemonNames = async() => {
         .catch( (error) => console.log(error));
 
     return pokeNames;
+    // return pokeNamesList;
 };
 
 

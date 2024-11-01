@@ -2,11 +2,17 @@ import axios from "axios"
 import { useEffect, useState } from "react";
 
 export type StateType<T> = {
-    data: null | T;
+    data:  T | null;
     isLoading: boolean;
     hasError: boolean;
     error: null | Error;
 }
+type CacheDataType<T> = {
+    [key: string] : T;
+}
+
+const localDataCache: CacheDataType<null> ={};
+
 
 const useFetch = <T,>(url: string): StateType<T> => {
 
@@ -19,37 +25,49 @@ const useFetch = <T,>(url: string): StateType<T> => {
     })
 
     useEffect(() => {
-        const getFetch = async() => {
 
-            resetState();
-            let result;
-    
-            await axios
-            .get(url)
-            .then( ({data}) => {
-                result = data;
-                setState( {
-                    data: result,
-                    isLoading: false,
-                    hasError: false,
-                    error: null
-                });
-                return;
-            })
-            .catch((error) => {
-                setState({
-                    data: null,
-                    isLoading: false,
-                    hasError: true,
-                    error: error
-                });
-                return;
-            })
-    
+        //si el data ya existe en el Cache, no se hace Fetch y se utiliza el Cache
+        if( localDataCache[url] != null){
+            console.log(localDataCache[url]);
+            setState( {
+                data: localDataCache[url],
+                isLoading: false,
+                hasError: false,
+                error: null
+            });
+            return;
         }
 
-        getFetch();
+        resetState();
+        let result;
+
+        axios
+        .get(url)
+        .then( ({data}) => {
+            result = data;
+            setState( {
+                data: result,
+                isLoading: false,
+                hasError: false,
+                error: null
+            });
+            //Guardar la data en el cache
+            localDataCache[url] = data;
+            return;
+        })
+        .catch((error) => {
+            setState({
+                data: null,
+                isLoading: false,
+                hasError: true,
+                error: error
+            });
+            return;
+        })
+    
+        
     },[url]);
+
 
     const resetState = () => {
         setState(

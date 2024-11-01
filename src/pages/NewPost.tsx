@@ -1,10 +1,17 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Button } from "../components/shared/Button";
 import useFetchPokemonNames from "../hooks/useFetchPokemonNames";
 import PokemonFoundCard from "../components/PokemonFoundCard";
 import { DropDownList } from "../components/shared/DropDownList";
 import { TextArea } from "../components/shared/TextArea";
+// import useFetch from "../hooks/useFetch";
+// import { DataPokemon } from "../types/PokemonInfoType";
 
+type DataType = {
+  results: {
+      name: string;
+  }[]
+}
 
 const NewPost = (): JSX.Element => {
 
@@ -15,22 +22,15 @@ const NewPost = (): JSX.Element => {
       mb-20 mt-8`;
   const titleStyle = `text-white text-4xl mt-10  ml-[220px]`;
 
-
   //states
-  // const [isSearching, setIsSearching] = useState<boolean>(false);
   const [pokemonNameSearch, setPokemonNameSearch] = useState<string>('');
   const {pokeNamesList, isLoadingPokeNames} = useFetchPokemonNames();
+  // const {data, isLoading} = useFetch<DataType>(`https://pokeapi.co/api/v2/pokemon/`);
 
-  const handleInputText = (text: string) => {
-    console.log('Pokemon para buscar: ' + pokemonNameSearch)
 
-    setPokemonNameSearch(text);
+  const onInputChange = (newText: string) => {
+    setPokemonNameSearch(newText);
   }
-  useEffect(() => {
-
-    // console.log('Pokemon para buscar: ' + pokemonNameSearch)
-  },[pokemonNameSearch])
-
 
   return (
     <div
@@ -46,11 +46,17 @@ const NewPost = (): JSX.Element => {
         <DropDownList
         dataList = {pokeNamesList} 
         isLoading = {isLoadingPokeNames}
-        returnInputText = {(text) => handleInputText(text)}
+        value={pokemonNameSearch}
+        onChange={onInputChange}
         />
 
         <PokemonFoundCard
-          pokemonName={pokemonNameSearch}
+          pokemonName={
+            pokeNamesList.includes(pokemonNameSearch) ?
+            pokemonNameSearch 
+            :
+            ''
+          }
           />
 
         <label className="text-white text-2xl ml-[180px] mb-[20px] mr-[200px]">

@@ -32,7 +32,6 @@ const PokemonFoundCard = ({pokemonName}: Props) => {
 
                   { 
                     data?.types?.map( ({type}, index) => {
-                        console.log("VENGO DE POKEMONFOUND" + data?.name)
                       return (
                         <p 
                         className={pElementStyle}

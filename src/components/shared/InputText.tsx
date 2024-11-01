@@ -22,15 +22,7 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(({ value, 
     const handleOnClick = () => {
       onClick();
     }
-    // const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //   onChange(event.target.value);
-    // };
 
-    // useEffect(() =>{
-    //   setInputText(changeValue);
-    // },[changeValue]);
-
-     
     
 
     return (
@@ -42,9 +34,6 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(({ value, 
             onChange={handleChange}
             onClick={handleOnClick}
             ref={ref}
-          //   onClick={() => handleIsSearching()}
-            // onFocus={() => setInputActive(true)}
-            // onBlur={() => setIsSearching(false)}
       />
 
     )
