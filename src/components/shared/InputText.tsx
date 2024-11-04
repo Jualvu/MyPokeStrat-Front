@@ -1,16 +1,16 @@
 import { forwardRef } from "react";
 
-type onClickFunc = () => void;
+type onFocusFunc = () => void;
 
 type InputTextProps = {
     value: string;
     placeHolder: string;
     extraStyle: string;
     onChange: (value: string) => void;
-    onClick: onClickFunc;
+    onFocus: onFocusFunc;
 }
 
-export const InputText = forwardRef<HTMLInputElement, InputTextProps>(({ value, onChange, placeHolder, extraStyle, onClick }, ref) => {
+export const InputText = forwardRef<HTMLInputElement, InputTextProps>(({ value, onChange, placeHolder, extraStyle, onFocus }, ref) => {
 
     const inputTextStyle = `w-[300px] h-[40px] text-xl p-4 rounded-xl ${extraStyle}`;
   
@@ -19,8 +19,8 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(({ value, 
       onChange(event.target.value);
     };
 
-    const handleOnClick = () => {
-      onClick();
+    const handleOnFocus = () => {
+      onFocus();
     }
 
     
@@ -32,8 +32,8 @@ export const InputText = forwardRef<HTMLInputElement, InputTextProps>(({ value, 
             placeholder={placeHolder}
             value={value}
             onChange={handleChange}
-            onClick={handleOnClick}
             ref={ref}
+            onFocus={handleOnFocus}
       />
 
     )

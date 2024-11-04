@@ -1,35 +1,29 @@
 import { useState } from "react";
 import { Button } from "../components/shared/Button";
-import useFetchPokemonNames from "../hooks/useFetchPokemonNames";
 import PokemonFoundCard from "../components/PokemonFoundCard";
 import { DropDownList } from "../components/shared/DropDownList";
 import { TextArea } from "../components/shared/TextArea";
-// import useFetch from "../hooks/useFetch";
-// import { DataPokemon } from "../types/PokemonInfoType";
+import useFetchPokemonNames from "../hooks/useFetchPokemonNames";
 
-type DataType = {
-  results: {
-      name: string;
-  }[]
-}
 
 const NewPost = (): JSX.Element => {
 
   //Styles
-  const mainDivStyle = `bg-indigo-950 min-h-svh flex 
-    items-start justify-center overflow-hidden`;
+  const mainDivStyle = `bg-transparent min-h-svh flex 
+    items-start justify-center`;
   const containerDivStyle = `bg-roseCustom opacity-95 rounded-2xl h-[780px] w-[1000px] 
       mb-20 mt-8`;
   const titleStyle = `text-white text-4xl mt-10  ml-[220px]`;
 
   //states
-  const [pokemonNameSearch, setPokemonNameSearch] = useState<string>('');
-  const {pokeNamesList, isLoadingPokeNames} = useFetchPokemonNames();
-  // const {data, isLoading} = useFetch<DataType>(`https://pokeapi.co/api/v2/pokemon/`);
+  const [inputText, setInputText] = useState<string>('');
+  // const [pokemonNameSearch, setPokemonNameSearch] = useState<string>('');
+  const {pokemonNameList, indexList, isLoadingPokemonNames} = useFetchPokemonNames();
 
+  // console.log(pokemonNameList)
 
   const onInputChange = (newText: string) => {
-    setPokemonNameSearch(newText);
+    setInputText(newText);
   }
 
   return (
@@ -44,19 +38,29 @@ const NewPost = (): JSX.Element => {
         </h1>
 
         <DropDownList
-        dataList = {pokeNamesList} 
-        isLoading = {isLoadingPokeNames}
-        value={pokemonNameSearch}
+        dataList = {pokemonNameList} 
+        isLoading = {isLoadingPokemonNames}
+        value={inputText}
         onChange={onInputChange}
+        extraStyle="bg-white w-[511px] 
+            h-[200px] ml-[100px] mb-[20px]"
+        inputStyle="mt-[50px] ml-[100px] mb-[20px] mr-[50px]"
+        listItemStyle="hover:bg-slate-400 w-[500px] text-black"
         />
 
         <PokemonFoundCard
           pokemonName={
-            pokeNamesList.includes(pokemonNameSearch) ?
-            pokemonNameSearch 
+            pokemonNameList?.includes(inputText) || indexList.includes(inputText) ?
+            (
+              inputText 
+            )
             :
             ''
+
           }
+          extraStyle="w-[800px] h-[200px]
+          ml-[100px] mb-[20px]"
+          imgStyle="w-[300px] h-[300px] ml-3"
           />
 
         <label className="text-white text-2xl ml-[180px] mb-[20px] mr-[200px]">
@@ -73,7 +77,7 @@ const NewPost = (): JSX.Element => {
           onClickFunc={() => {
             console.log('Submited!')
           }}
-          extraStyle="ml-[420px]"
+          style="ml-[420px]"
           >
             
         </Button>

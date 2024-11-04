@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 
 const Header = (): JSX.Element => {
   return (
+    <>
     <header
-      className="h-[90px]
-            bg-rose-900 flex justify-between  
-            items-center py-6 px-8"
+      className="h-[90px] bg-transparent flex justify-between  
+            items-center py-6 px-8 opacity-90"
     >
-      <div>
+      <div className="bg-transparent">
         <h1
-          className="font-medium text-4xl 
+          className="font-medium text-4xl bg-transparent  
                         text-white ml-[40px]"
         >
           PokeApp
@@ -17,29 +17,29 @@ const Header = (): JSX.Element => {
       </div>
 
       <ul
-        className="flex items-center
+        className="flex items-center bg-transparent
                 gap-4 font-medium text-lg 
                 text-white ml-[40px]"
       >
-        <Link to="/newPost">
-          <li
-            className=" hover:bg-rose-500 bg-rose-950 cursor-pointer rounded-3xl
-                    px-8 py-3 "
-          >
-            New Post
-          </li>
-        </Link>
         <Link to="/">
           <li
-            className="hover:bg-rose-600 cursor-pointer rounded-md
+            className=" border-2 border-transparent hover:border-white hover:border-2 bg-transparent cursor-pointer rounded-xl
                     px-8 py-3 "
           >
             Home
           </li>
         </Link>
+        <Link to="/newPost">
+          <li
+            className=" border-2 border-transparent hover:border-white hover:border-2 bg-transparent cursor-pointer rounded-xl
+                    px-8 py-3 "
+          >
+            New Post
+          </li>
+        </Link>
         <Link to="/users">
           <li
-            className="hover:bg-rose-600 cursor-pointer rounded-md
+            className=" border-2 border-transparent hover:border-white hover:border-2 bg-transparent cursor-pointer rounded-xl
                     px-8 py-3 "
           >
             Users
@@ -47,7 +47,7 @@ const Header = (): JSX.Element => {
         </Link>
         <Link to="/login">
           <li
-            className="hover:bg-rose-600 cursor-pointer rounded-md
+            className=" border-2 border-transparent hover:border-white hover:border-2 bg-transparent cursor-pointer rounded-xl
                     px-8 py-3 "
           >
             Sign In
@@ -55,6 +55,8 @@ const Header = (): JSX.Element => {
         </Link>
       </ul>
     </header>
+    <hr className="opacity-60"/>
+    </>
   );
 };
 

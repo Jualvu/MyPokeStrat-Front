@@ -9,7 +9,8 @@ export default {
   theme: {
     colors: {
       ...colorsDefault,
-      'roseCustom': '#6B1640',
+      'roseCustom': '#471830',
+      'violetCustom': '#100233'
     },
     extend: {},
   },

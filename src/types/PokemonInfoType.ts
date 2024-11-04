@@ -1,9 +1,9 @@
 
 type Types = {
-    type: {
-        name: string;
-        url: string; 
-        }
+  type: {
+      name: string;
+      url: string; 
+      }
 }
 
 export type DataPokemon = {

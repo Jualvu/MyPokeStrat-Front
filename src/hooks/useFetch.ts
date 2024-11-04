@@ -28,7 +28,6 @@ const useFetch = <T,>(url: string): StateType<T> => {
 
         //si el data ya existe en el Cache, no se hace Fetch y se utiliza el Cache
         if( localDataCache[url] != null){
-            console.log(localDataCache[url]);
             setState( {
                 data: localDataCache[url],
                 isLoading: false,
