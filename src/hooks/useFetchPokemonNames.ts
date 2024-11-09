@@ -14,25 +14,13 @@ const useFetchPokemonNames = () => {
   useEffect(() => {
     setIsLoadingPokemonNames(isLoading);
 
-    //Fill Index list with every index
-    setIndexList(
-      data ?
-        (
-          data?.results.map( (pokemon, index) => {
-            return index.toString();
-          })
-        )
-        :
-        ['Error']
-    )
-
-
     // setPokemonNameList(valuesAndIndexList);
-    //Fill pokemon Name list with names
+    //Fill pokemon Name list with names and indexes
     setPokemonNameList(
       data ?
         (
-          data?.results.map( (pokemon) => {
+          data?.results.map( (pokemon, index) => {
+            setIndexList([...indexList, index.toString()])
             return pokemon.name;
           })
         )
@@ -42,7 +30,7 @@ const useFetchPokemonNames = () => {
 
 
 
-  },[data, isLoading]);
+  },[data, isLoading, indexList]);
 
 
   return {
