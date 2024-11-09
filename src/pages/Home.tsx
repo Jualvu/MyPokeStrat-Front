@@ -1,66 +1,40 @@
-// import PokeGrid from "../components/PokeGrid";
-
-import { MouseEvent, useState } from "react";
-import PokemonFoundCard from "../components/PokemonFoundCard";
-import { PokemonSmallCard } from "../components/PokemonSmallCard";
-import { DropDownList } from "../components/shared/DropDownList";
-import useFetchPokemonNames from "../hooks/useFetchPokemonNames";
+import { useState } from "react";
+import SelectPokemonCard from "../components/SelectPokemonCard";
 import { Button } from "../components/shared/Button";
+import { PokemonTeamList } from "../components/PokemonTeamList";
+import { usePokemonTeams } from "../hooks/usePokemonTeams";
+
 
 const Home = (): JSX.Element => {
 
   //states
   const [inputText, setInputText] = useState<string>('');
-  // const [pokemonNameSearch, setPokemonNameSearch] = useState<string>('');
-  const {pokemonNameList, indexList, isLoadingPokemonNames} = useFetchPokemonNames();
+  // const [pokeList, setPokeList] = useState<Pokemon[]>([]);
+  const [showPokemonSelectForm, setShowPokemonSelectForm] = useState<boolean>(false);
+  const { pokemonTeam, handleNewPokemon, handleRemovePokemon, handleEditPokemon} = usePokemonTeams();
+
 
   const onInputChange = (newText: string) => {
     setInputText(newText);
   }
 
-  const showSelectPokemonDiv = () => {
-
-  }
-
 
   return (
     <>
-
-      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-        <div className="bg-indigo-950 rounded-xl p-6 
-            w-[600px] h-[350px] grid justify-items-start shadow-2xl ">
-
-            <DropDownList
-              dataList = {pokemonNameList} 
-              isLoading = {isLoadingPokemonNames}
-              value={inputText}
-              onChange={onInputChange}
-              extraStyle="bg-white mt-[50px] h-[200px] ml-[100px] w-[300px]"
-              inputStyle="mb-[10px] ml-[100px]"
-              listItemStyle="text-gray-500 hover:bg-gray-200"
+        {
+          showPokemonSelectForm ?
+            <SelectPokemonCard
+            inputText={inputText}
+            onChangeInputText={onInputChange}
+            isShowForm={showPokemonSelectForm}
+            onShowFormFunc={() => setShowPokemonSelectForm(!showPokemonSelectForm)}
+            onAddPokemon={(pokemon) => handleNewPokemon(pokemon)}
             />
-            <PokemonFoundCard
-            pokemonName={
-              pokemonNameList?.includes(inputText) || indexList.includes(inputText) ?
-              (
-                inputText 
-              )
-              :
-              ''
-            }
-            extraStyle="h-[200px] "
-            imgStyle="w-[200px] h-[200px] ml-3"/>
-
-            <Button text={"Add"} 
-            onClickFunc={() => {console.log('gola')}} 
-            style={`border-2 border-transparent hover:border-white hover:border-2 
-                    opacity-80 bg-rose-800 cursor-pointer rounded-2xl text-lg 
-                    px-6 py-2 text-white mt-[10px] ml-[220px]`}
-            />
-
-        </div>
-
-      </div>
+          :
+          null
+        }
+        
+     
       
         <div
           className="bg-transparent overflow-visible h-screen
@@ -78,54 +52,38 @@ const Home = (): JSX.Element => {
 
           </div>
 
-          <div className="flex justify-evenly gap-[200px] mb-[200px]">
-
-          
-
-            <div className="bg-indigo-950 w-[400px] h-[800px] 
-            inline-block justify-items-center rounded-3xl opacity-90">
-              <h1 className="text-white text-xl mt-[10px]">
-                Select Rival's Team
-              </h1>
-              <PokemonSmallCard
-              pokemonName="155"
-              onClick={showSelectPokemonDiv}/>
-              <PokemonSmallCard
-              pokemonName="158"
-              onClick={showSelectPokemonDiv}/>
-              <PokemonSmallCard
-              pokemonName="188"
-              onClick={showSelectPokemonDiv}/>
-              <PokemonSmallCard
-              pokemonName="111"
-              onClick={showSelectPokemonDiv}/>
-              <PokemonSmallCard
-              pokemonName="88"
-              onClick={showSelectPokemonDiv}/>
-              <PokemonSmallCard
-              pokemonName="999"
-              onClick={showSelectPokemonDiv}/>
+            <div>
+              <Button
+              text={`Add Pokemon`}
+                onClickFunc={() => {setShowPokemonSelectForm(!showPokemonSelectForm)}}
+                style="text-gray-200 bg-roseCustom hover:bg- p-3 rounded-xl m-4 w-[150px]"
+              />
               
-              
+              <div className="flex justify-evenly gap-[200px] mb-[200px]">
+                {
 
-            </div>
+                }
+                <PokemonTeamList
+                  pokemonList={pokemonTeam}
+                />
 
-            <h1 className="text-white text-6xl justify-self-center self-center">
-              VS
-            </h1>
+                <h1 className="text-white text-6xl justify-self-center self-center">
+                  VS
+                </h1>
 
-            <div className="bg-indigo-950 w-[400px] h-[800px] 
-            inline-block justify-items-center rounded-2xl">
-              <h1 className="text-white text-xl mt-[10px]">
-                Best team to fight
-              </h1>
+                <div className="bg-indigo-950 w-[400px] h-[800px] 
+                inline-block justify-items-center rounded-2xl">
+                  <h1 className="text-white text-xl mt-[20px]">
+                    Best team to fight
+                  </h1>
+                    
+
+                </div>
+
                 
 
+              </div>
             </div>
-
-            
-
-          </div>
 
 
           {/* <div className="h-[20px] w-[200px]">

@@ -3,9 +3,7 @@ import Home from "./pages/Home.tsx";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header.tsx";
-import SignIn from "./pages/SignIn.tsx";
-import Users from "./pages/Users.tsx";
-import NewPost from "./pages/NewPost.tsx";
+import SearchPokemon from "./pages/SearchPokemon.tsx";
 import {PostsProvider} from "./context/PostsContext.tsx";
 
 
@@ -15,15 +13,6 @@ const App = ():JSX.Element => {
     <PostsProvider>
       <BrowserRouter>
         <Routes>
-          <Route
-            path="/newPost"
-            element={
-              <>
-                <Header />
-                <NewPost />
-              </>
-            }
-          ></Route>
 
           <Route
             path="/"
@@ -36,24 +25,15 @@ const App = ():JSX.Element => {
           ></Route>
 
           <Route
-            path="/login"
+            path="/searchPokemon"
             element={
               <>
                 <Header />
-                <SignIn />
+                <SearchPokemon />
               </>
             }
           ></Route>
 
-          <Route
-            path="/users"
-            element={
-              <>
-                <Header />
-                <Users />
-              </>
-            }
-          ></Route>
         </Routes>
       </BrowserRouter>
     </PostsProvider>

@@ -1,18 +1,14 @@
-import useFetch from "../hooks/useFetch";
-import { DataPokemon } from "../types/PokemonInfoType";
+import Pokemon from "../types/PokemonType"
 
-
-type Props = {
-    pokemonName: string;
-    onClick: () => void;
-}
-
-export const PokemonSmallCard = ({pokemonName, onClick}: Props) => {
-
-    const {data, isLoading} = useFetch<DataPokemon>(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
-
+ 
+export const PokemonSmallCard = ({pokemon, getPokemon} :
+     {
+        pokemon: Pokemon, 
+        getPokemon: (pokemon: Pokemon) => void
+    }) => {
+ 
     const handleClick = () => {
-        onClick();
+        if (getPokemon) getPokemon(pokemon);
     }
 
   return (
@@ -23,39 +19,24 @@ export const PokemonSmallCard = ({pokemonName, onClick}: Props) => {
             items-center opacity-90 mb-[20px] hover:scale-110"
             onClick={handleClick}
         >
-            {
-                isLoading ?
-                
-                <h1>Loading...</h1>
-                :
-                (
-                    <>
-                        <div>
-                            <p className="text-white text-lg ml-[10px]">
-                                {data?.name}
-                            </p>  
-                            <p className="text-white text-lg ml-[10px]">
-                                types: {
-                                        data?.types?.map( ({type}) => {
-                                            return type.name + ' '
-                                        })
-                                        } 
-                            </p>  
-                        </div>
+        <div>
+            <p className="text-indigo-200 text-lg ml-[10px]">
+                {pokemon.name}
+            </p>  
+            <p className="text-indigo-300 text-lg ml-[10px]">
+                types: {
+                        pokemon.types.map( (type: string) => {
+                            return type + ' '
+                        })
+                        } 
+            </p>  
+        </div>
 
-                        <div>
-                        <img 
-                            src={data?.sprites?.front_default || 
-                                'https://pokerating.com/static/images/PokemonArt/unown-question.png'} 
-                            className={data?.sprites?.front_default 
-                                ? 'w-[150px] h-[150px] ml-10 mr-[20px]'
-                                : 'w-[100px] h-[180px] ml-10 mr-[10px]'}/>
-                        </div>
-                        
-                        
-                    </>
-                )  
-            }
+        <div>
+        <img 
+            src={pokemon.img || ''} 
+            className={'w-[150px] h-[150px] ml-10 mr-[20px]'}/>
+        </div>
 
         </div>
 

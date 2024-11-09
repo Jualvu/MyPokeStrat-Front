@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Header = (): JSX.Element => {
   return (
@@ -19,40 +19,30 @@ const Header = (): JSX.Element => {
       <ul
         className="flex items-center bg-transparent
                 gap-4 font-medium text-lg 
-                text-white ml-[40px]"
+               ml-[40px]"
       >
-        <Link to="/">
-          <li
-            className=" border-2 border-transparent hover:border-white hover:border-2 bg-transparent cursor-pointer rounded-xl
-                    px-8 py-3 "
+        <NavLink 
+          to="/"
+          className={ ({isActive}) => {
+            return `border-2 border-transparent hover:border-gray-400 
+            hover:border-2 bg-transparent cursor-pointer rounded-xl
+            px-8 py-3 ${isActive ? 'text-white' : 'text-gray-500'}`}
+            }
           >
             Home
-          </li>
-        </Link>
-        <Link to="/newPost">
-          <li
-            className=" border-2 border-transparent hover:border-white hover:border-2 bg-transparent cursor-pointer rounded-xl
-                    px-8 py-3 "
+        </NavLink>
+
+        <NavLink 
+          to="/searchPokemon"
+          className={ ({isActive}) => {
+            return `border-2 border-transparent hover:border-white 
+            hover:border-2 bg-transparent cursor-pointer rounded-xl
+            px-8 py-3 ${isActive ? 'text-white' : 'text-gray-500'}`}
+            }
           >
-            New Post
-          </li>
-        </Link>
-        <Link to="/users">
-          <li
-            className=" border-2 border-transparent hover:border-white hover:border-2 bg-transparent cursor-pointer rounded-xl
-                    px-8 py-3 "
-          >
-            Users
-          </li>
-        </Link>
-        <Link to="/login">
-          <li
-            className=" border-2 border-transparent hover:border-white hover:border-2 bg-transparent cursor-pointer rounded-xl
-                    px-8 py-3 "
-          >
-            Sign In
-          </li>
-        </Link>
+            Search Pokemon
+        </NavLink>
+        
       </ul>
     </header>
     <hr className="opacity-60"/>

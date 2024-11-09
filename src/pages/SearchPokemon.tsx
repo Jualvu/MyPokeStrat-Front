@@ -6,7 +6,7 @@ import { TextArea } from "../components/shared/TextArea";
 import useFetchPokemonNames from "../hooks/useFetchPokemonNames";
 
 
-const NewPost = (): JSX.Element => {
+const SearchPokemon = (): JSX.Element => {
 
   //Styles
   const mainDivStyle = `bg-transparent min-h-svh flex 
@@ -87,4 +87,4 @@ const NewPost = (): JSX.Element => {
   );
 };
 
-export default NewPost;
+export default SearchPokemon;
