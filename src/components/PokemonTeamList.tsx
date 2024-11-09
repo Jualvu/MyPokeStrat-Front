@@ -21,6 +21,7 @@ export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick}:
         </div>
             
         {
+            pokemonList ?
             pokemonList.map( (pokemonInTeam: PokemonInTeam) => {
                 return (
                     <PokemonSmallCard
@@ -29,6 +30,8 @@ export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick}:
                     onClickGetPokemon={getSelectedPokemonOnClick}/>
                 )
             })
+            :
+            null
         }             
 
     </div>
