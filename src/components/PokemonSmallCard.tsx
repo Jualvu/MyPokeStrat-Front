@@ -1,14 +1,14 @@
-import Pokemon from "../types/PokemonType"
+import { PokemonInTeam } from "../utils/pokemonReducer";
 
  
-export const PokemonSmallCard = ({pokemon, getPokemon} :
+export const PokemonSmallCard = ({pokemonInTeam, onClickGetPokemon} :
      {
-        pokemon: Pokemon, 
-        getPokemon: (pokemon: Pokemon) => void
+        pokemonInTeam: PokemonInTeam, 
+        onClickGetPokemon: (pokemonInTeam: PokemonInTeam) => void
     }) => {
  
     const handleClick = () => {
-        if (getPokemon) getPokemon(pokemon);
+        onClickGetPokemon(pokemonInTeam);
     }
 
   return (
@@ -21,11 +21,11 @@ export const PokemonSmallCard = ({pokemon, getPokemon} :
         >
         <div>
             <p className="text-indigo-200 text-lg ml-[10px]">
-                {pokemon.name}
+                {pokemonInTeam.pokemon.name}
             </p>  
             <p className="text-indigo-300 text-lg ml-[10px]">
                 types: {
-                        pokemon.types.map( (type: string) => {
+                        pokemonInTeam.pokemon.types.map( (type: string) => {
                             return type + ' '
                         })
                         } 
@@ -34,7 +34,7 @@ export const PokemonSmallCard = ({pokemon, getPokemon} :
 
         <div>
         <img 
-            src={pokemon.img || ''} 
+            src={pokemonInTeam.pokemon.img || ''} 
             className={'w-[150px] h-[150px] ml-10 mr-[20px]'}/>
         </div>
 

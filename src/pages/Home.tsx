@@ -1,23 +1,61 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SelectPokemonCard from "../components/SelectPokemonCard";
 import { Button } from "../components/shared/Button";
 import { PokemonTeamList } from "../components/PokemonTeamList";
 import { usePokemonTeams } from "../hooks/usePokemonTeams";
+import Pokemon from "../types/PokemonType";
+import { PokemonInTeam } from "../utils/pokemonReducer";
+import { RemovePokemonCard } from "../components/RemovePokemonCard";
 
 
 const Home = (): JSX.Element => {
 
   //states
   const [inputText, setInputText] = useState<string>('');
-  // const [pokeList, setPokeList] = useState<Pokemon[]>([]);
   const [showPokemonSelectForm, setShowPokemonSelectForm] = useState<boolean>(false);
-  const { pokemonTeam, handleNewPokemon, handleRemovePokemon, handleEditPokemon} = usePokemonTeams();
+  const [showPokemonRemoveForm, setShowPokemonRemoveForm] = useState<boolean>(false);
+  const [addButtonEnable, setAddButtonEnable] = useState<boolean>(true);
+  const [selectedPokemon, setSelectedPokemon] = useState<PokemonInTeam>();
+  const { pokemonTeam, handleNewPokemon, handleRemovePokemon} = usePokemonTeams();
 
+
+  useEffect(() => {
+    if( pokemonTeam && pokemonTeam?.length > 5){
+      setAddButtonEnable(false);
+    }else if( pokemonTeam && pokemonTeam?.length < 6){
+      setAddButtonEnable(true);
+    }
+  }, [pokemonTeam])
 
   const onInputChange = (newText: string) => {
     setInputText(newText);
   }
 
+
+  const onShowFormEmpty = () => {
+    if( pokemonTeam && pokemonTeam?.length < 6){
+      setInputText('');
+      setShowPokemonSelectForm(!showPokemonSelectForm);
+    }
+  }
+
+  const onRemovePokemon = () => {
+    if(selectedPokemon) handleRemovePokemon(selectedPokemon);
+    setShowPokemonRemoveForm(!showPokemonRemoveForm);
+    
+  }
+
+  const onShowRemovePokemonForm = ( pokemonInTeam: PokemonInTeam ) => {
+    setSelectedPokemon(pokemonInTeam);
+    setShowPokemonRemoveForm(!showPokemonRemoveForm)
+    // handleRemovePokemon(pokemonInTeam);
+  }
+
+  const onAddPokemon = (pokemon: Pokemon) => {
+    // uuid creates the pokemonInTeam object to send to the Reducer
+    handleNewPokemon(pokemon);
+    setShowPokemonSelectForm(!showPokemonSelectForm);
+  }
 
   return (
     <>
@@ -27,13 +65,23 @@ const Home = (): JSX.Element => {
             inputText={inputText}
             onChangeInputText={onInputChange}
             isShowForm={showPokemonSelectForm}
-            onShowFormFunc={() => setShowPokemonSelectForm(!showPokemonSelectForm)}
-            onAddPokemon={(pokemon) => handleNewPokemon(pokemon)}
+            onCloseForm={() => setShowPokemonSelectForm(!showPokemonSelectForm)}
+            onAddPokemon={onAddPokemon}
             />
           :
           null
         }
         
+        {
+          showPokemonRemoveForm ?
+          <RemovePokemonCard
+          isShowForm={showPokemonRemoveForm}
+          onCloseForm={() => setShowPokemonRemoveForm(!showPokemonRemoveForm)}
+          onRemovePokemon={onRemovePokemon}
+          />
+          :
+          null
+        }
      
       
         <div
@@ -55,8 +103,14 @@ const Home = (): JSX.Element => {
             <div>
               <Button
               text={`Add Pokemon`}
-                onClickFunc={() => {setShowPokemonSelectForm(!showPokemonSelectForm)}}
-                style="text-gray-200 bg-roseCustom hover:bg- p-3 rounded-xl m-4 w-[150px]"
+                onClickFunc={onShowFormEmpty}
+                style={
+                  addButtonEnable ?
+                  `text-gray-200 bg-roseCustom p-3 rounded-xl m-4 w-[150px]
+                  hover:scale-110`
+                  :
+                  `text-gray-500 bg-gray-800 p-3 rounded-xl m-4 w-[150px]`
+                }
               />
               
               <div className="flex justify-evenly gap-[200px] mb-[200px]">
@@ -64,7 +118,8 @@ const Home = (): JSX.Element => {
 
                 }
                 <PokemonTeamList
-                  pokemonList={pokemonTeam}
+                  pokemonList={pokemonTeam ? pokemonTeam : []}
+                  getSelectedPokemonOnClick={onShowRemovePokemonForm}
                 />
 
                 <h1 className="text-white text-6xl justify-self-center self-center">
@@ -84,12 +139,6 @@ const Home = (): JSX.Element => {
 
               </div>
             </div>
-
-
-          {/* <div className="h-[20px] w-[200px]">
-
-
-          </div> */}
 
           <footer className="h-[1px] w-[1px]">
             Copyrigth

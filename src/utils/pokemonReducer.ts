@@ -1,24 +1,26 @@
 import Pokemon from "../types/PokemonType";
 
+export type PokemonInTeam = {
+    id: string,
+    pokemon: Pokemon;
+}
+ 
 export type Action = {
     type: string;
-    payload: Pokemon;
+    payload: PokemonInTeam;
 }
 
-export const pokemonReducer = (initialState: Pokemon[] = [], action: Action) => {
+export const pokemonReducer = (initialState: PokemonInTeam[] = [], action: Action) => {
     
     switch( action.type){
         case '[POKEMON] Add Pokemon':
-            if(initialState.length <= 6){
+            if(initialState.length < 6){
                 return [...initialState, action.payload];
             }
             return initialState
 
         case '[POKEMON] Remove Pokemon':
-            return initialState.filter( pokemon => pokemon.id !== action.payload.id);
-
-        case '[POKEMON] Edit Pokemon':
-            return [...initialState, action.payload];
+            return initialState.filter( (pokemonInTeam) => pokemonInTeam.id !== action.payload.id);
 
         default:
             return initialState;

@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { Button } from "../components/shared/Button";
 import PokemonFoundCard from "../components/PokemonFoundCard";
 import { DropDownList } from "../components/shared/DropDownList";
-import { TextArea } from "../components/shared/TextArea";
 import useFetchPokemonNames from "../hooks/useFetchPokemonNames";
 
 
@@ -36,16 +34,16 @@ const SearchPokemon = (): JSX.Element => {
         <h1 className={titleStyle}>
           Select wich pokemon you caugth!{" "}
         </h1>
-
+        
         <DropDownList
         dataList = {pokemonNameList} 
         isLoading = {isLoadingPokemonNames}
         value={inputText}
         onChange={onInputChange}
-        extraStyle="bg-white w-[511px] 
-            h-[200px] ml-[100px] mb-[20px]"
-        inputStyle="mt-[50px] ml-[100px] mb-[20px] mr-[50px]"
-        listItemStyle="hover:bg-slate-400 w-[500px] text-black"
+        extraStyle="w-[500px] h-[300px] ml-[100px] mb-[20px] bg-indigo-950 border-2 border-gray-400"
+        inputStyle={`bg-indigo-950 border-2 border-solid border-gray-400 border-inherit
+           mt-[50px] ml-[100px] mb-[20px] mr-[50px] text-gray-200`}
+        listItemStyle="hover:bg-slate-400 w-[486px] text-black"
         />
 
         <PokemonFoundCard
@@ -61,26 +59,9 @@ const SearchPokemon = (): JSX.Element => {
           extraStyle="w-[800px] h-[200px]
           ml-[100px] mb-[20px]"
           imgStyle="w-[300px] h-[300px] ml-3"
+          getPokemon={null}
           />
 
-        <label className="text-white text-2xl ml-[180px] mb-[20px] mr-[200px]">
-          Description
-        </label>
-
-        <TextArea
-          placeHolder='Description...'
-          extraStyle= 'mt-[10px] ml-[180px] mb-[10px] mr-[200px]'
-          />
-
-        <Button
-          text="Submit"
-          onClickFunc={() => {
-            console.log('Submited!')
-          }}
-          style="ml-[420px]"
-          >
-            
-        </Button>
 
       </div>
     </div>

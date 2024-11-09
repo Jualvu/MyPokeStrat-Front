@@ -1,9 +1,12 @@
-import Pokemon from "../types/PokemonType"
+import { PokemonInTeam } from "../utils/pokemonReducer"
 import { PokemonSmallCard } from "./PokemonSmallCard"
 
-export const PokemonTeamList = ({pokemonList = []}: {pokemonList: Pokemon[]}) => {
+export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick}: 
+    {
+        pokemonList: PokemonInTeam[],
+        getSelectedPokemonOnClick: (pokemonInTeam: PokemonInTeam) => void
+    }) => {
 
-    
 
   return (
     <div className="bg-indigo-950 w-[400px] h-[800px] 
@@ -18,12 +21,12 @@ export const PokemonTeamList = ({pokemonList = []}: {pokemonList: Pokemon[]}) =>
         </div>
             
         {
-            pokemonList.map( (pokemon: Pokemon) => {
+            pokemonList.map( (pokemonInTeam: PokemonInTeam) => {
                 return (
                     <PokemonSmallCard
-                    key={pokemon.id}
-                    pokemon={pokemon}
-                    getPokemon={(pokemon) => {}}/>
+                    key={pokemonInTeam.id}
+                    pokemonInTeam={pokemonInTeam}
+                    onClickGetPokemon={getSelectedPokemonOnClick}/>
                 )
             })
         }             

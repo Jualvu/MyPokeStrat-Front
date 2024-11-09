@@ -26,7 +26,7 @@ const Header = (): JSX.Element => {
           className={ ({isActive}) => {
             return `border-2 border-transparent hover:border-gray-400 
             hover:border-2 bg-transparent cursor-pointer rounded-xl
-            px-8 py-3 ${isActive ? 'text-white' : 'text-gray-500'}`}
+            px-8 py-3 ${isActive ? 'text-white' : 'text-gray-400'}`}
             }
           >
             Home
@@ -37,7 +37,7 @@ const Header = (): JSX.Element => {
           className={ ({isActive}) => {
             return `border-2 border-transparent hover:border-white 
             hover:border-2 bg-transparent cursor-pointer rounded-xl
-            px-8 py-3 ${isActive ? 'text-white' : 'text-gray-500'}`}
+            px-8 py-3 ${isActive ? 'text-white' : 'text-gray-400'}`}
             }
           >
             Search Pokemon

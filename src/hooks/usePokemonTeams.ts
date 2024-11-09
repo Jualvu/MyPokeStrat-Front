@@ -1,9 +1,11 @@
 import { useEffect, useReducer } from "react"
-import { Action, pokemonReducer } from "../utils/pokemonReducer"
+import { Action, PokemonInTeam, pokemonReducer } from "../utils/pokemonReducer"
 import Pokemon from "../types/PokemonType";
+import { v4 as uuidv4 } from 'uuid';
 
 const init = () => {
     return JSON.parse( localStorage.getItem('pokemonTeam') || '{}') || [];
+    // return []
 }
 
 export const usePokemonTeams = () => {
@@ -19,43 +21,32 @@ export const usePokemonTeams = () => {
         if( pokemon.id !== 0){
             const action: Action = {
                 type: '[POKEMON] Add Pokemon',
-                payload: pokemon 
+                payload: {
+                    id: uuidv4(),
+                    pokemon: pokemon 
+                }
+
             }
             dispatch( action );        
         }
         
     }
 
-    const handleRemovePokemon = ( pokemon: Pokemon ) => {
-        if( pokemon.id !== 0){
-            const action: Action = {
-                type: '[POKEMON] Remove Pokemon',
-                payload: pokemon 
-            }
-            dispatch( action );        
+    const handleRemovePokemon = ( pokemonInTeam: PokemonInTeam ) => {
+        const action: Action = {
+            type: '[POKEMON] Remove Pokemon',
+            payload: pokemonInTeam 
         }
-
+        dispatch( action );        
     }
-    const handleEditPokemon = ( pokemon: Pokemon ) => {
 
-        if( pokemon.id !== 0){
-            const action: Action = {
-                type: '[POKEMON] Edit Pokemon',
-                payload: pokemon 
-            }
-            dispatch( action );        
-        }
-        
-
-    }
 
   return {
     
     pokemonTeam,
 
     handleNewPokemon,
-    handleRemovePokemon,
-    handleEditPokemon
+    handleRemovePokemon
 
   }
 }
