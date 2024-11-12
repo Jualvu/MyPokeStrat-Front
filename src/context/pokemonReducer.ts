@@ -17,7 +17,7 @@ export const pokemonReducer = (initialState: PokemonInTeam[] = [], action: Actio
             if(initialState.length < 6){
                 return [...initialState, action.payload];
             }
-            return initialState
+            return initialState;
 
         case '[POKEMON] Remove Pokemon':
             return initialState.filter( (pokemonInTeam) => pokemonInTeam.id !== action.payload.id);

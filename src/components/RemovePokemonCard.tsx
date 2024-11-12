@@ -15,7 +15,8 @@ export const RemovePokemonCard = ({isShowForm, onCloseForm, onRemovePokemon}:
             isShowForm ?
             (
 
-                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+                <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50
+                                animate__animated animate__fadeIn">
                     <div className="bg-indigo-950 rounded-xl p-6 
                                 w-[400px] h-[200px] grid justify-items-start shadow-2xl ">
 

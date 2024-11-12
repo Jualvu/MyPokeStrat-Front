@@ -1,8 +1,9 @@
 import PokemonFoundCard from "../components/PokemonFoundCard";
 import { DropDownList } from "../components/shared/DropDownList";
 import { MdOutlineClose } from "react-icons/md";
-import useFetchPokemonNames from "../hooks/useFetchPokemonNames";
 import Pokemon from "../types/PokemonType";
+import getPokemonNameList from "../helpers/getPokemonNameList";
+import { useMemo } from "react";
 
 const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseForm, onAddPokemon}:
     {
@@ -14,8 +15,7 @@ const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseFor
     }
 ) => {
 
-  //states
-    const {pokemonNameList, indexList, isLoadingPokemonNames} = useFetchPokemonNames();
+    const {pokemonNameList, indexList, hasError} = useMemo(() => getPokemonNameList(), []);
 
     const onInputChange = (newText: string) => {
         onChangeInputText(newText);
@@ -33,17 +33,17 @@ const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseFor
 
                     <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
                         <div className="bg-indigo-950 rounded-xl p-6 
-                    w-[600px] h-[380px] grid justify-items-start shadow-2xl ">
+                    w-[600px] h-[380px] grid justify-items-start shadow-2xl animate__animated animate__fadeIn">
 
                     <div 
-                    className="justify-self-end cursor-pointer"
+                    className={`justify-self-end cursor-pointer`}
                     onClick={onCloseForm}
                     >
                         <MdOutlineClose color="white" size='30'/>
                     </div>
                     <DropDownList
                         dataList = {pokemonNameList} 
-                        isLoading = {isLoadingPokemonNames}
+                        isLoading = {hasError}
                         value={inputText}
                         onChange={onInputChange}
                         extraStyle={`w-[300px] h-[200px] ml-[100px] mt-[75px] bg-indigo-950 border-2 border-gray-400`}

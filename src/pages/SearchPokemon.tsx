@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import PokemonFoundCard from "../components/PokemonFoundCard";
 import { DropDownList } from "../components/shared/DropDownList";
-import useFetchPokemonNames from "../hooks/useFetchPokemonNames";
+import getPokemonNameList from "../helpers/getPokemonNameList";
 
 
 const SearchPokemon = (): JSX.Element => {
 
   //Styles
   const mainDivStyle = `bg-transparent min-h-svh flex 
-    items-start justify-center`;
+    items-start justify-center animate__animated animate__fadeIn`;
   const containerDivStyle = `bg-roseCustom opacity-95 rounded-2xl h-[780px] w-[1000px] 
       mb-20 mt-8`;
   const titleStyle = `text-white text-4xl mt-10  ml-[220px]`;
@@ -16,7 +16,7 @@ const SearchPokemon = (): JSX.Element => {
   //states
   const [inputText, setInputText] = useState<string>('');
   // const [pokemonNameSearch, setPokemonNameSearch] = useState<string>('');
-  const {pokemonNameList, indexList, isLoadingPokemonNames} = useFetchPokemonNames();
+  const {pokemonNameList, indexList, hasError} = useMemo(() => getPokemonNameList(), []);
 
   // console.log(pokemonNameList)
 
@@ -37,7 +37,7 @@ const SearchPokemon = (): JSX.Element => {
         
         <DropDownList
         dataList = {pokemonNameList} 
-        isLoading = {isLoadingPokemonNames}
+        isLoading = {hasError}
         value={inputText}
         onChange={onInputChange}
         extraStyle="w-[500px] h-[300px] ml-[100px] mb-[20px] bg-indigo-950 border-2 border-gray-400"

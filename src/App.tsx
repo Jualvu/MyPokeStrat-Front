@@ -4,13 +4,13 @@ import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header.tsx";
 import SearchPokemon from "./pages/SearchPokemon.tsx";
-import {PostsProvider} from "./context/PostsContext.tsx";
+import { PokemonProvider } from "./context/PokemonProvider.tsx";
 
 
 const App = ():JSX.Element => {
     return(
     <StrictMode>
-    <PostsProvider>
+    <PokemonProvider>
       <BrowserRouter>
         <Routes>
 
@@ -36,7 +36,7 @@ const App = ():JSX.Element => {
 
         </Routes>
       </BrowserRouter>
-    </PostsProvider>
+    </PokemonProvider>
   </StrictMode>
     )
 }

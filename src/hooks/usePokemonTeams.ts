@@ -1,6 +1,6 @@
 // import { useEffect, useReducer } from "react"
 import { useReducer } from "react"
-import { Action, PokemonInTeam, pokemonReducer } from "../utils/pokemonReducer"
+import { Action, PokemonInTeam, pokemonReducer } from "../context/pokemonReducer"
 import Pokemon from "../types/PokemonType";
 import { v4 as uuidv4 } from 'uuid';
 

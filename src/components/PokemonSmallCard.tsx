@@ -1,4 +1,4 @@
-import { PokemonInTeam } from "../utils/pokemonReducer";
+import { PokemonInTeam } from "../context/pokemonReducer";
 
  
 export const PokemonSmallCard = ({pokemonInTeam, onClickGetPokemon} :
@@ -14,9 +14,10 @@ export const PokemonSmallCard = ({pokemonInTeam, onClickGetPokemon} :
   return (
     <>
         <div
-            className="mt-[10px] w-[300px] h-[100px] bg-roseCustom 
-            rounded-lg cursor-pointer flex justify-center
-            items-center opacity-90 mb-[20px] hover:scale-110"
+            className="mt-[10px] w-5/6 h-32 bg-roseCustom 
+            rounded-xl cursor-pointer flex justify-center
+            items-center opacity-90 mb-[20px] hover:scale-105
+            animate__animated animate__fadeIn"
             onClick={handleClick}
         >
         <div>
@@ -35,7 +36,7 @@ export const PokemonSmallCard = ({pokemonInTeam, onClickGetPokemon} :
         <div>
         <img 
             src={pokemonInTeam.pokemon.img || ''} 
-            className={'w-[150px] h-[150px] ml-10 mr-[20px]'}/>
+            className={'object-cover w-40 h-40 ml-10 mr-[20px]'}/>
         </div>
 
         </div>

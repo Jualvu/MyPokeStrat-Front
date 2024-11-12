@@ -1,21 +1,22 @@
-import { PokemonInTeam } from "../utils/pokemonReducer"
+import { PokemonInTeam } from "../context/pokemonReducer"
 import { PokemonSmallCard } from "./PokemonSmallCard"
 
-export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick}: 
+export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, titleText}: 
     {
         pokemonList: PokemonInTeam[],
-        getSelectedPokemonOnClick: (pokemonInTeam: PokemonInTeam) => void
+        getSelectedPokemonOnClick: (pokemonInTeam: PokemonInTeam) => void,
+        titleText: string
     }) => {
 
 
   return (
-    <div className="bg-indigo-950 w-[400px] h-[800px] 
-        inline-block justify-items-center rounded-3xl opacity-90">
+    <div className="bg-indigo-950 w-7/12 h-full
+        inline-block justify-items-center rounded-3xl opacity-90 animate__animated animate__fadeInLeft">
         <div
         className="flex items-stretch">
 
         <h1 className="text-white text-xl mt-[20px]">
-            Rival's Team
+            {titleText}
         </h1>
             
         </div>
