@@ -1,17 +1,7 @@
-import Pokemon from "../types/PokemonType";
+import { PokemonReducerAction, PokemonInTeam } from "../types/pokemonContextTypes";
 
-export type PokemonInTeam = {
-    id: string,
-    pokemon: Pokemon;
-}
- 
-export type Action = {
-    type: string;
-    payload: PokemonInTeam;
-}
-
-export const pokemonReducer = (initialState: PokemonInTeam[] = [], action: Action) => {
-    
+export const pokemonReducer = (initialState: PokemonInTeam[] = [], action: PokemonReducerAction) => {
+     
     switch( action.type){
         case '[POKEMON] Add Pokemon':
             if(initialState.length < 6){
@@ -26,5 +16,4 @@ export const pokemonReducer = (initialState: PokemonInTeam[] = [], action: Actio
             return initialState;
     }
 
-    return
 }

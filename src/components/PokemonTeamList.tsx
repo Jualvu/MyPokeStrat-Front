@@ -1,4 +1,4 @@
-import { PokemonInTeam } from "../context/pokemonReducer"
+import { PokemonInTeam } from "../context/types/pokemonContextTypes"
 import { PokemonSmallCard } from "./PokemonSmallCard"
 
 export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, titleText}: 
@@ -10,7 +10,7 @@ export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, ti
 
 
   return (
-    <div className="bg-indigo-950 w-7/12 h-full
+    <div className="bg-indigo-950 w-7/12 min-h-dvh h-full
         inline-block justify-items-center rounded-3xl opacity-90 animate__animated animate__fadeInLeft">
         <div
         className="flex items-stretch">

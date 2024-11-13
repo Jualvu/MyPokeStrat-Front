@@ -14,7 +14,7 @@ const PokemonFoundCard = ({pokemonName, extraStyle, imgStyle, getPokemon = null}
     const containerDivStyle = `flex items-center justify-items-evenly  justify-around
           bg-indigo-950 opacity-90 rounded-lg ${extraStyle}`;
     const pokemonDataDivStyle = `bg-blue-900 text-white items-center justify-items-evenly
-     ml-10 p-6 rounded-lg w-[250px]`;
+     ml-10 p-6 rounded-lg w-[250px] animate__animated animate__fadeIn`;
     const pElementStyle = `text-xl`;
     const divImageContainerStyle = ``;
 
@@ -57,7 +57,7 @@ const PokemonFoundCard = ({pokemonName, extraStyle, imgStyle, getPokemon = null}
                     (
                       <img 
                       src={pokemonFound?.img} 
-                      className={imgStyle}/>
+                      className={`animate__animated animate__fadeIn ${imgStyle}`}/>
                     )
                     :
                     null

@@ -1,4 +1,4 @@
-import { PokemonInTeam } from "../context/pokemonReducer";
+import { PokemonInTeam } from "../context/types/pokemonContextTypes";
 
  
 export const PokemonSmallCard = ({pokemonInTeam, onClickGetPokemon} :

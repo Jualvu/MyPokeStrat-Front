@@ -3,9 +3,11 @@ import SelectPokemonCard from "../components/SelectPokemonCard";
 import { Button } from "../components/shared/Button";
 import { PokemonTeamList } from "../components/PokemonTeamList";
 import Pokemon from "../types/PokemonType";
-import { PokemonInTeam } from "../context/pokemonReducer";
 import { RemovePokemonCard } from "../components/RemovePokemonCard";
-import { PokemonContext } from "../context/PokemonContext";
+import { PokemonContext } from "../context/PokemonTeamContext/PokemonContext";
+import { PokemonInTeam } from "../context/types/pokemonContextTypes";
+import { PokemonAIContext } from "../context/AI_PokemonTeam/PokemonAIContext";
+import { ChargingCard } from "../components/ChargingCard";
 
 
 
@@ -18,14 +20,39 @@ const Home = (): JSX.Element => {
     handleRemovePokemon: () => {}
   };
 
+  const { pokemonAITeamState, createPokemonAITeam } = useContext( PokemonAIContext) || {
+    pokemonTeamState: [], 
+    createPokemonAITeam: () => {}
+  };
+
+
   //states
   const [inputText, setInputText] = useState<string>('');
   const [showPokemonSelectForm, setShowPokemonSelectForm] = useState<boolean>(false);
   const [showPokemonRemoveForm, setShowPokemonRemoveForm] = useState<boolean>(false);
+  const [showChargingScreen, setShowChargingScreen] = useState<boolean>(false);
   const [addButtonStyleEnable, setAddButtonStyleEnable] = useState<boolean>(true);
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonInTeam>();
 
+  const onGeneratePokemonTeam = () => {
+    //generate only if rivals team is exactly 6
+    if( pokemonTeamState && pokemonTeamState?.length === 6){
+      setShowChargingScreen(true);
+      const pokemonTeamJSONFormat = {
+        pokemonTeam: `[${pokemonTeamState?.map( (pokemon: PokemonInTeam) => {return pokemon.pokemon.name}).toString()}]`
+      }
+      createPokemonAITeam(pokemonTeamJSONFormat);
+    }
 
+  }
+
+  useEffect( () => {
+    if(pokemonAITeamState){
+      setTimeout(() => setShowChargingScreen(false), 500);
+    }
+  },[pokemonAITeamState])
+
+  //useEffect to change if add button should be enable or not
   useEffect(() => {
     if(pokemonTeamState && pokemonTeamState?.length > 5){
       setAddButtonStyleEnable(false);
@@ -63,6 +90,9 @@ const Home = (): JSX.Element => {
     setShowPokemonSelectForm(!showPokemonSelectForm);
   }
 
+
+  
+
   return (
     <>
         {
@@ -88,7 +118,16 @@ const Home = (): JSX.Element => {
           :
           null
         }
-     
+
+        {
+          showChargingScreen ?
+          <ChargingCard
+          isShowForm={showChargingScreen}
+          />
+          :
+          null
+        }
+    
       
         <div
           className="bg-transparent overflow-visible h-screen w-svw
@@ -105,22 +144,49 @@ const Home = (): JSX.Element => {
             </p>
 
           </div>
+         
+            <div className="w-3/5 grid">
 
-            <div className="w-3/5 grid ">
-              <Button
-              text={`Add Pokemon`}
-                onClickFunc={onShowFormEmpty}
-                style={
-                  addButtonStyleEnable ?
-                  `text-gray-200 bg-roseCustom p-3 rounded-xl m-4 w-1/6
-                  hover:scale-110`
-                  :
-                  `text-gray-500 bg-gray-800 p-3 rounded-xl m-4 w-1/6`
-                }
-              />
+            {
+              (pokemonAITeamState?.message !== '') ?
+              <div className="bg-blue-950 w-fill h-fill mt-14 justify-self-center  rounded-xl opacity-90 ml-48 mr-48 mb-6 animate__animated animate__fadeIn">
+                <p className="p-4 text-gray-300">
+                    {pokemonAITeamState?.message}
+                </p>
+              </div>
+              :
+              null
+            }
+              
+
+              <div className="flex justify-between">
+                <Button
+                text={`Add Pokemon`}
+                  onClickFunc={onShowFormEmpty}
+                  style={
+                    addButtonStyleEnable ?
+                    `text-gray-200 bg-roseCustom p-3 rounded-xl m-4 w-1/6
+                    hover:scale-110 cursor-pointer`
+                    :
+                    `text-gray-500 bg-gray-800 p-3 rounded-xl m-4 w-1/6 cursor-auto `
+                  }
+                />
+                <Button
+                text={`Generate Pokemon Team`}
+                  onClickFunc={onGeneratePokemonTeam}
+                  style={
+                    addButtonStyleEnable ?
+                    `text-gray-500 bg-gray-800 p-3 rounded-xl m-4  w-3/12 cursor-auto `
+                    :
+                    `text-gray-200 bg-roseCustom p-3 rounded-xl m-4  w-3/12
+                    hover:scale-110 cursor-pointer`
+                    
+                  }
+                />
+              </div>
               
               <div className="flex justify-between">
-
+ 
                 <PokemonTeamList
                   pokemonList={pokemonTeamState ? pokemonTeamState : []}
                   getSelectedPokemonOnClick={onShowRemovePokemonForm}
@@ -131,13 +197,13 @@ const Home = (): JSX.Element => {
                           animate__animated animate__fadeInLeft">
                   VS
                 </h1>
-
-                <PokemonTeamList
-                  pokemonList={[]}
-                  getSelectedPokemonOnClick={onShowRemovePokemonForm}
-                  titleText="Best counter to Rival's team"
-                />
-
+                  <PokemonTeamList
+                    pokemonList={
+                      pokemonAITeamState?.pokemonTeam ? pokemonAITeamState.pokemonTeam : []
+                    }
+                    getSelectedPokemonOnClick={() => {}}
+                    titleText="Best counter to Rival's team"
+                  />
               </div>
             </div>
 

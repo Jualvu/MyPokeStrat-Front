@@ -18,7 +18,6 @@ const SearchPokemon = (): JSX.Element => {
   // const [pokemonNameSearch, setPokemonNameSearch] = useState<string>('');
   const {pokemonNameList, indexList, hasError} = useMemo(() => getPokemonNameList(), []);
 
-  // console.log(pokemonNameList)
 
   const onInputChange = (newText: string) => {
     setInputText(newText);
