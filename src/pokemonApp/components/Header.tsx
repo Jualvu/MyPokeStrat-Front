@@ -12,7 +12,7 @@ const Header = (): JSX.Element => {
           className="font-medium text-4xl bg-transparent  
                         text-white ml-[40px]"
         >
-          PokeApp
+          MyPokeStrat
         </h1>
       </div>
 

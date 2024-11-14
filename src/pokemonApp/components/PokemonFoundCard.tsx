@@ -46,7 +46,7 @@ const PokemonFoundCard = ({pokemonName, extraStyle, imgStyle, getPokemon = null}
                   <p className={pElementStyle}>name: {pokemonFound?.name}</p>
                   <hr/>
                   <p className={pElementStyle}>types: {
-                      pokemonFound?.types?.map( (type) => {
+                      pokemonFound?.types?.map( (type: string) => {
                         return (type + ' ')
                       })
                     } </p>

@@ -1,5 +1,5 @@
-import PokemonFoundCard from "../components/PokemonFoundCard";
-import { DropDownList } from "../components/shared/DropDownList";
+import PokemonFoundCard from "./PokemonFoundCard";
+import { DropDownList } from "./shared/DropDownList";
 import { MdOutlineClose } from "react-icons/md";
 import Pokemon from "../types/PokemonType";
 import getPokemonNameList from "../helpers/getPokemonNameList";

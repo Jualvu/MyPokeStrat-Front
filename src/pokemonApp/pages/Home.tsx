@@ -8,6 +8,7 @@ import { PokemonContext } from "../context/PokemonTeamContext/PokemonContext";
 import { PokemonInTeam } from "../context/types/pokemonContextTypes";
 import { PokemonAIContext } from "../context/AI_PokemonTeam/PokemonAIContext";
 import { LoadingCard } from "../components/LoadingCard";
+import Header from "../components/Header";
 
 
 
@@ -95,6 +96,7 @@ const Home = (): JSX.Element => {
 
   return (
     <>
+        <Header />
         {
           showPokemonSelectForm ?
             <SelectPokemonCard

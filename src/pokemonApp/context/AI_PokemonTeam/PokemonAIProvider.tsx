@@ -48,15 +48,7 @@ export const PokemonAIProvider = ({children}: {children: React.ReactNode}) => {
                             ['null']}
                     }
                     generatedPokemonTeam.push(pokemon);
-                    // const action: PokemonAIReducerAction = {
-                    //     type: '[AIPOKEMON] Add Pokemon',
-                    //     payload: {
-                    //         pokemonInTeam: pokemon,
-                    //         message: ''
-                    //     }
-                    // }
-                    // console.log(action);
-                    // dispatch( action ); 
+
 
                 })
             })
@@ -74,7 +66,6 @@ export const PokemonAIProvider = ({children}: {children: React.ReactNode}) => {
             }
             
             dispatch( action );
-            // assignAIMessage(generatedResponseJSON.message);
 
         })
         .catch( (error) => {
@@ -82,29 +73,6 @@ export const PokemonAIProvider = ({children}: {children: React.ReactNode}) => {
         })
         
     }
-
-    // const clearPokemonAITeam = () => {
-    //     const action: PokemonAIReducerAction = {
-    //         type: '[AIPOKEMON] Clean Pokemon Team',
-    //         payload: {
-    //             pokemonInTeam: nullPokemonInTeam,
-    //             message: ''
-    //         }
-    //     }
-    //     dispatch( action );
-    // }
-
-    // const assignAIMessage = (message:string) => {
-    //     //Assign message to context
-    //     const action: PokemonAIReducerAction = {
-    //         type: '[AIPOKEMON] Add Pokemon',
-    //         payload: {
-    //             pokemonInTeam: nullPokemonInTeam,
-    //             message: message
-    //         }
-    //     }
-    //     dispatch( action );
-    // }
 
   return (
 
