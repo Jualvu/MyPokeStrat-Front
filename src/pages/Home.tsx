@@ -7,7 +7,7 @@ import { RemovePokemonCard } from "../components/RemovePokemonCard";
 import { PokemonContext } from "../context/PokemonTeamContext/PokemonContext";
 import { PokemonInTeam } from "../context/types/pokemonContextTypes";
 import { PokemonAIContext } from "../context/AI_PokemonTeam/PokemonAIContext";
-import { ChargingCard } from "../components/ChargingCard";
+import { LoadingCard } from "../components/LoadingCard";
 
 
 
@@ -121,7 +121,7 @@ const Home = (): JSX.Element => {
 
         {
           showChargingScreen ?
-          <ChargingCard
+          <LoadingCard
           isShowForm={showChargingScreen}
           />
           :
@@ -136,7 +136,7 @@ const Home = (): JSX.Element => {
 
           <div className="grid justify-items-center mb-20">
             <h1 className="text-5xl text-white mt-4">
-                Welcome to PokeApp!
+                Welcome to MyPokeStrat!
             </h1>
 
             <p className="text-2xl text-white mt-4">

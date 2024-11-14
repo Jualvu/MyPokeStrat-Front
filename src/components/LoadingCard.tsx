@@ -1,5 +1,5 @@
 
-export const ChargingCard = ({isShowForm}:
+export const LoadingCard = ({isShowForm}:
     {
         isShowForm: boolean
     }
@@ -16,7 +16,7 @@ export const ChargingCard = ({isShowForm}:
                     <div className="bg-indigo-950 rounded-xl p-6 
                                 w-80 h-32 grid justify-items-center items-center shadow-2xl">
 
-                        <h1 className="text-gray-200 text-2xl">Charging...</h1>
+                        <h1 className="text-gray-200 text-2xl">Loading...</h1>
                 
                     </div>
                 </div>
