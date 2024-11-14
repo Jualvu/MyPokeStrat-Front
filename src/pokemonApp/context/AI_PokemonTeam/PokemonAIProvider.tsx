@@ -21,10 +21,8 @@ export const PokemonAIProvider = ({children}: {children: React.ReactNode}) => {
 
 
     const createPokemonAITeam = (pokemonIdList: { pokemonTeam: string }) => {
-        
-        axios.post(import.meta.env.VITE_MYPOKESTRAT_API_URL, pokemonIdList)
+        axios.post("https://backend-open-ai-nu.vercel.app/api/v1/pokemonAITeam", pokemonIdList)
         .then( ({data}) => {
-
             const generatedResponseJSON = JSON.parse(data.data.content);
             const generatedPokemonTeam: PokemonInTeam[] = []
 
@@ -67,7 +65,7 @@ export const PokemonAIProvider = ({children}: {children: React.ReactNode}) => {
 
         })
         .catch( (error) => {
-            console.log(error);
+            console.log(error.message);
         })
         
     }
