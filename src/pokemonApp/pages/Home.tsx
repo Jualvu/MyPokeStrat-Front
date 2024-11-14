@@ -91,9 +91,6 @@ const Home = (): JSX.Element => {
     setShowPokemonSelectForm(!showPokemonSelectForm);
   }
 
-
-  
-
   return (
     <>
         <Header />
