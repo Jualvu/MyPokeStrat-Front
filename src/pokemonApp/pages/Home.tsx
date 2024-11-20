@@ -14,6 +14,8 @@ import Header from "../components/Header";
 
 const Home = (): JSX.Element => {
   
+
+
   // const pokemonContext = useContext( PokemonContext );
   const { pokemonTeamState, handleNewPokemon, handleRemovePokemon } = useContext( PokemonContext ) || {
     pokemonTeamState: [], 
@@ -34,9 +36,10 @@ const Home = (): JSX.Element => {
   const [showChargingScreen, setShowChargingScreen] = useState<boolean>(false);
   const [addButtonStyleEnable, setAddButtonStyleEnable] = useState<boolean>(true);
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonInTeam>();
+  const [loadingModalAnimation, setLoadingModalAnimation] = useState('animate__animated animate__fadeIn')
 
   const onGeneratePokemonTeam = () => {
-    //generate only if rivals team is exactly 6
+    // generate only if rivals team is exactly 6
     if( pokemonTeamState && pokemonTeamState?.length === 6){
       setShowChargingScreen(true);
       const pokemonTeamJSONFormat = {
@@ -49,7 +52,12 @@ const Home = (): JSX.Element => {
 
   useEffect( () => {
     if(pokemonAITeamState){
-      setTimeout(() => setShowChargingScreen(false), 500);
+      // setTimeout(() => setShowChargingScreen(false), 500);
+      setTimeout(() =>{
+        setLoadingModalAnimation('animate__animated animate__fadeOut')
+        setShowChargingScreen(false)
+        setLoadingModalAnimation('animate__animated animate__fadeIn')
+      }, 1000);
     }
   },[pokemonAITeamState])
 
@@ -91,6 +99,8 @@ const Home = (): JSX.Element => {
     setShowPokemonSelectForm(!showPokemonSelectForm);
   }
 
+
+
   return (
     <>
         <Header />
@@ -122,6 +132,7 @@ const Home = (): JSX.Element => {
           showChargingScreen ?
           <LoadingCard
           isShowForm={showChargingScreen}
+          animation={loadingModalAnimation}
           />
           :
           null

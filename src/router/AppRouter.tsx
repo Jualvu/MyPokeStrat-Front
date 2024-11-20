@@ -12,8 +12,8 @@ export const AppRouter = () => {
 
         {/* MyPokeStrat App  */}
         <Route path="/*" element={ <MyPokeStratAppRoutes/> }/>
-        
 
+        
 
     </Routes>
 

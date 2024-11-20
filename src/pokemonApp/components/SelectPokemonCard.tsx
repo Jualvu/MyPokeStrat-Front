@@ -3,7 +3,7 @@ import { DropDownList } from "./shared/DropDownList";
 import { MdOutlineClose } from "react-icons/md";
 import Pokemon from "../types/PokemonType";
 import getPokemonNameList from "../helpers/getPokemonNameList";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseForm, onAddPokemon}:
     {
@@ -15,6 +15,7 @@ const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseFor
     }
 ) => {
 
+    const [animation, setAnimation] = useState('animate__animated animate__fadeIn');
     const {pokemonNameList, indexList, hasError} = useMemo(() => getPokemonNameList(), []);
 
     const onInputChange = (newText: string) => {
@@ -22,7 +23,11 @@ const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseFor
     }
 
     const handleAddPokemon = (pokemonFound: Pokemon) => {
-        onAddPokemon(pokemonFound);
+        setAnimation('animate__animated animate__fadeOut');
+        setTimeout(() => {
+            onAddPokemon(pokemonFound);
+            setAnimation('animate__animated animate__fadeIn');
+        }, 500);
     }
 
     return (
@@ -31,13 +36,20 @@ const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseFor
                 isShowForm ?
                 (
 
-                    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70">
-                        <div className="bg-indigo-950 rounded-xl p-6 
-                    w-[600px] h-[380px] grid justify-items-start shadow-2xl animate__animated animate__fadeIn">
+                    <div className={`fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70 ${animation}`}>
+                        <div className={`bg-indigo-950 rounded-xl p-6 
+                    w-[600px] h-[380px] grid justify-items-start shadow-2xl`}>
 
                     <div 
                     className={`justify-self-end cursor-pointer`}
-                    onClick={onCloseForm}
+                    onClick={() => {
+                        setAnimation('animate__animated animate__fadeOut');
+                        setTimeout(() => {
+                            onCloseForm();
+                            setAnimation('animate__animated animate__fadeIn');
+                        }, 500);
+                        }
+                    }
                     >
                         <MdOutlineClose color="white" size='30'/>
                     </div>

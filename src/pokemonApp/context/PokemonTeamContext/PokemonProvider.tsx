@@ -30,9 +30,7 @@ export const PokemonProvider = ({children}: {children: React.ReactNode}) => {
 
             }
             dispatch( action );        
-        }},
-        []
-    )
+        }},[])
     
 
     const handleRemovePokemon = useCallback(
@@ -42,9 +40,7 @@ export const PokemonProvider = ({children}: {children: React.ReactNode}) => {
                 payload: pokemonInTeam 
             }
             dispatch( action );        
-        },
-        []
-    ) 
+        },[]) 
 
 
   return (
