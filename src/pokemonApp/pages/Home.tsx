@@ -14,9 +14,6 @@ import Header from "../components/Header";
 
 const Home = (): JSX.Element => {
   
-
-  console.log(import.meta.env);
-
   // const pokemonContext = useContext( PokemonContext );
   const { pokemonTeamState, handleNewPokemon, handleRemovePokemon } = useContext( PokemonContext ) || {
     pokemonTeamState: [], 
