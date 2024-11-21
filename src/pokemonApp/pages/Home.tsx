@@ -173,10 +173,10 @@ const Home = (): JSX.Element => {
                   onClickFunc={onShowFormEmpty}
                   style={
                     addButtonStyleEnable ?
-                    `text-gray-200 bg-roseCustom p-3 rounded-xl m-4 w-1/6
+                    `text-gray-200 bg-roseCustom p-3 rounded-xl m-4 w-1/6 text-xl
                     hover:scale-110 cursor-pointer`
                     :
-                    `text-gray-500 bg-gray-800 p-3 rounded-xl m-4 w-1/6 cursor-auto `
+                    `text-gray-500 bg-gray-800 p-3 rounded-xl m-4 w-1/6 cursor-auto text-xl`
                   }
                 />
                 <Button
@@ -184,10 +184,10 @@ const Home = (): JSX.Element => {
                   onClickFunc={onGeneratePokemonTeam}
                   style={
                     addButtonStyleEnable ?
-                    `text-gray-500 bg-gray-800 p-3 rounded-xl m-4  w-3/12 cursor-auto `
+                    `text-gray-500 bg-gray-800 p-3 rounded-xl m-4  w-3/12 cursor-auto text-xl`
                     :
                     `text-gray-200 bg-roseCustom p-3 rounded-xl m-4  w-3/12
-                    hover:scale-110 cursor-pointer`
+                    hover:scale-110 cursor-pointer text-xl`
                     
                   }
                 />
@@ -199,6 +199,7 @@ const Home = (): JSX.Element => {
                   pokemonList={pokemonTeamState ? pokemonTeamState : []}
                   getSelectedPokemonOnClick={onShowRemovePokemonForm}
                   titleText="Rival's team"
+                  pokemonLeftCount={true}
                 />
 
                 <h1 className="text-white text-6xl text-center justify-self-center self-center w-2/5
@@ -211,6 +212,7 @@ const Home = (): JSX.Element => {
                     }
                     getSelectedPokemonOnClick={() => {}}
                     titleText="Best counter to Rival's team"
+                    pokemonLeftCount={false}
                   />
               </div>
             </div>
