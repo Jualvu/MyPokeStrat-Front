@@ -34,7 +34,7 @@ const SearchPokemon = (): JSX.Element => {
           className={containerDivStyle}
         >
           <h1 className={titleStyle}>
-            Select wich pokemon you caugth!{" "}
+            Search any Pokemon you want!
           </h1>
           
           <DropDownList

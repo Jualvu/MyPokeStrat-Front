@@ -138,21 +138,17 @@ const Home = (): JSX.Element => {
     
       
         <div
-          className="bg-transparent overflow-visible h-screen w-svw
+          className="bg-transparent overflow-visible h-svw w-svw
           pb-28 grid-row justify-items-center mt-10 animate__animated animate__fadeIn"
         >
 
-          <div className="grid justify-items-center mb-20">
             <h1 className="text-5xl text-white mt-4">
                 Welcome to MyPokeStrat!
             </h1>
-
-            <p className="text-2xl text-white mt-4">
+            <p className="text-2xl text-white mt-4 mb-20">
                 Here you find the best pokemon team to defeat your rival.
             </p>
-
-          </div>
-         
+          
             <div className="w-3/5 grid">
 
             {
@@ -191,6 +187,7 @@ const Home = (): JSX.Element => {
                     
                   }
                 />
+                
               </div>
               
               <div className="flex justify-between">

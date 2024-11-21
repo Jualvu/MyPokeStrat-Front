@@ -10,6 +10,7 @@ export default {
     colors: {
       ...colorsDefault,
       'roseCustom': '#471830',
+      'lightRoseCustom': '#521b36',
       'roseCustomDark': '#2b0e1d',
       'violetCustom': '#100233'
     },

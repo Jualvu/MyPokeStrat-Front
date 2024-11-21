@@ -14,7 +14,7 @@ export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, ti
     <div className="bg-indigo-950 w-7/12 min-h-dvh h-full
         inline-block rounded-3xl opacity-90 animate__animated animate__fadeInLeft">
 
-        <div className="flex justify-center gap-11 mt-5 ml-10 mr-10 opacity-90">
+        <div className="flex justify-center gap-8 mt-5 ml-10 mr-10 opacity-90">
             <h1 className="text-white text-xl">
                 {titleText}
             </h1>
@@ -22,9 +22,16 @@ export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, ti
             {
                 pokemonLeftCount ?
                 
-                    <h1 className="text-roseCustom text-xl font-bold">
-                    {`Please add ${6 - pokemonList.length} Pokemon`}
-                    </h1>
+                    (
+                        pokemonList.length !== 6 ?
+                        <h1 className="text-red-900 text-xl font-bold">
+                        {`Please add ${6 - pokemonList.length} Pokemon`}
+                        </h1>
+                        :
+                        <h1 className="text-green-600 text-xl font-bold">
+                        {`Ready to generate Team!`}
+                        </h1>
+                    )
             
                 :
                 null
