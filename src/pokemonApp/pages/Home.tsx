@@ -139,7 +139,7 @@ const Home = (): JSX.Element => {
       
         <div
           className="bg-transparent overflow-visible h-svw w-svw
-          pb-28 grid-row justify-items-center mt-10 animate__animated animate__fadeIn"
+          pb-28 grid justify-items-center mt-10 animate__animated animate__fadeIn "
         >
 
             <h1 className="text-5xl text-white mt-4">

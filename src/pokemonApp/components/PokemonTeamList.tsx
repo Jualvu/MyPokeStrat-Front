@@ -39,7 +39,7 @@ export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, ti
             }
         </div>
 
-        <div className="inline-blovk justify-items-center">
+        <div className="justify-items-center grid">
             {
                 pokemonList ?
                 pokemonList.map( (pokemonInTeam: PokemonInTeam) => {
