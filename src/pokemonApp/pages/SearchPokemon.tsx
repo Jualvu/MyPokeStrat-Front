@@ -1,8 +1,8 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import PokemonFoundCard from "../components/PokemonFoundCard";
 import { DropDownList } from "../components/shared/DropDownList";
-import getPokemonNameList from "../helpers/getPokemonNameList";
 import Header from "../components/Header";
+import { allPokemonIdData, allPokemonNameData } from "../data/AllPokemonNameData";
 
 
 const SearchPokemon = (): JSX.Element => {
@@ -17,7 +17,6 @@ const SearchPokemon = (): JSX.Element => {
   //states
   const [inputText, setInputText] = useState<string>('');
   // const [pokemonNameSearch, setPokemonNameSearch] = useState<string>('');
-  const {pokemonNameList, indexList, hasError} = useMemo(() => getPokemonNameList(), []);
 
 
   const onInputChange = (newText: string) => {
@@ -38,8 +37,8 @@ const SearchPokemon = (): JSX.Element => {
           </h1>
           
           <DropDownList
-          dataList = {pokemonNameList} 
-          isLoading = {hasError}
+          dataList = {allPokemonNameData} 
+          isLoading = {false}
           value={inputText}
           onChange={onInputChange}
           extraStyle="w-[500px] h-[300px] ml-[100px] mb-[20px] bg-indigo-950 border-2 border-gray-400"
@@ -50,7 +49,7 @@ const SearchPokemon = (): JSX.Element => {
 
           <PokemonFoundCard
             pokemonName={
-              pokemonNameList?.includes(inputText) || indexList.includes(inputText) ?
+              allPokemonNameData?.includes(inputText) || allPokemonIdData.includes(inputText) ?
               (
                 inputText 
               )

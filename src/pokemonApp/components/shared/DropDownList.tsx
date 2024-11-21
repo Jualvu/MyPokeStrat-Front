@@ -25,7 +25,7 @@ export const DropDownList = ({dataList, isLoading, value, onChange, extraStyle, 
     const inputTextRef = useRef<HTMLInputElement>(null);
     
     //filter data based on input
-    const filteredData = dataList.filter( (item) => { return item.toLowerCase().includes(value.toLowerCase()) }) 
+    const filteredData = dataList.filter( (item) => { return item.toLowerCase().includes(value.toLowerCase()) }); 
 
 
 

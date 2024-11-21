@@ -2,8 +2,8 @@ import PokemonFoundCard from "./PokemonFoundCard";
 import { DropDownList } from "./shared/DropDownList";
 import { MdOutlineClose } from "react-icons/md";
 import Pokemon from "../types/PokemonType";
-import getPokemonNameList from "../helpers/getPokemonNameList";
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import { allPokemonNameData, allPokemonIdData } from "../data/AllPokemonNameData";
 
 const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseForm, onAddPokemon}:
     {
@@ -15,8 +15,8 @@ const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseFor
     }
 ) => {
 
+    // const [dataError, setDataError] = useState(false);
     const [animation, setAnimation] = useState('animate__animated animate__fadeIn');
-    const {pokemonNameList, indexList, hasError} = useMemo(() => getPokemonNameList(), []);
 
     const onInputChange = (newText: string) => {
         onChangeInputText(newText);
@@ -54,8 +54,8 @@ const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseFor
                         <MdOutlineClose color="white" size='30'/>
                     </div>
                     <DropDownList
-                        dataList = {pokemonNameList} 
-                        isLoading = {hasError}
+                        dataList = {allPokemonNameData} 
+                        isLoading = {false}
                         value={inputText}
                         onChange={onInputChange}
                         extraStyle={`w-[300px] h-[200px] ml-[100px] mt-[75px] bg-indigo-950 border-2 border-gray-400`}
@@ -65,7 +65,7 @@ const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseFor
                     />
                     <PokemonFoundCard
                     pokemonName={
-                        pokemonNameList?.includes(inputText) || indexList.includes(inputText) ?
+                        allPokemonNameData?.includes(inputText) || allPokemonIdData.includes(inputText) ?
                         (
                         inputText 
                         )

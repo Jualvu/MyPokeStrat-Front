@@ -11,9 +11,9 @@ import { LoadingCard } from "../components/LoadingCard";
 import Header from "../components/Header";
 
 
-
 const Home = (): JSX.Element => {
   
+
   // const pokemonContext = useContext( PokemonContext );
   const { pokemonTeamState, handleNewPokemon, handleRemovePokemon } = useContext( PokemonContext ) || {
     pokemonTeamState: [], 

@@ -1,5 +1,5 @@
 
-type Types = {
+export type Types = {
   type: {
       name: string;
       url: string; 

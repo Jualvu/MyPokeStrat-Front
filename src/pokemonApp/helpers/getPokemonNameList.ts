@@ -5,7 +5,7 @@ const getPokemonNameList = () => {
     const pokemonNameList: string[] = [];
     const indexList: string[] = [];
     let hasError: boolean = false;
-
+ 
     const getPokemonNames = () => {
         axios
        .get(`https://pokeapi.co/api/v2/pokemon/?limit=1302`)
