@@ -1,10 +1,11 @@
 import { PokemonInTeam } from "../context/types/pokemonContextTypes";
 
  
-export const PokemonSmallCard = ({pokemonInTeam, onClickGetPokemon} :
+export const PokemonSmallCard = ({pokemonInTeam, onClickGetPokemon, isRemovePokemonAnimation} :
      {
         pokemonInTeam: PokemonInTeam, 
-        onClickGetPokemon: (pokemonInTeam: PokemonInTeam) => void
+        onClickGetPokemon: (pokemonInTeam: PokemonInTeam) => void,
+        isRemovePokemonAnimation: boolean
     }) => {
  
     const handleClick = () => {
@@ -14,10 +15,13 @@ export const PokemonSmallCard = ({pokemonInTeam, onClickGetPokemon} :
   return (
     <>
         <div
-            className="mt-[10px] w-5/6 h-32 bg-roseCustom 
-            rounded-xl cursor-pointer flex justify-center
-            items-center opacity-90 mb-[20px] hover:scale-105
-            animate__animated animate__fadeIn"
+            className={`mt-[10px] w-5/6 h-32 bg-roseCustom 
+            rounded-xl flex justify-center transform transition duration-500
+            items-center opacity-90 mb-[20px]  
+            animate__animated animate__fadeIn
+            ${isRemovePokemonAnimation ? 
+                `hover:bg-gray-800 hover:scale-105 cursor-pointer hover:{animate__animated animate__shakeX}` 
+                : null}`}
             onClick={handleClick}
         >
         <div>

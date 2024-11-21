@@ -1,12 +1,13 @@
 import { PokemonInTeam } from "../context/types/pokemonContextTypes"
 import { PokemonSmallCard } from "./PokemonSmallCard"
 
-export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, titleText, pokemonLeftCount}: 
+export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, titleText, pokemonLeftCount, isRemovePokemonAnimation}: 
     {
         pokemonList: PokemonInTeam[],
         getSelectedPokemonOnClick: (pokemonInTeam: PokemonInTeam) => void,
         titleText: string,
-        pokemonLeftCount: boolean
+        pokemonLeftCount: boolean,
+        isRemovePokemonAnimation: boolean
     }) => {
 
 
@@ -46,7 +47,8 @@ export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, ti
                         <PokemonSmallCard
                         key={pokemonInTeam.id}
                         pokemonInTeam={pokemonInTeam}
-                        onClickGetPokemon={getSelectedPokemonOnClick}/>
+                        onClickGetPokemon={getSelectedPokemonOnClick}
+                        isRemovePokemonAnimation={isRemovePokemonAnimation}/>
                     )
                 })
                 :

@@ -40,7 +40,7 @@ const [animation, setAnimation] = useState('animate__animated animate__fadeIn');
 
                         <p 
                         className="text-white text-2xl
-                                ml-[20px] mt-[10px]">
+                                ml-5 mt-3">
                             Remove Pokemon from Team?
                         </p>
 
@@ -54,7 +54,7 @@ const [animation, setAnimation] = useState('animate__animated animate__fadeIn');
                                 }}
                                 style={`border-2 border-transparent hover:border-white hover:border-2 
                                         opacity-80 bg-rose-800 cursor-pointer rounded-2xl text-lg 
-                                        px-6 py-2 text-white mt-[20px] ml-[120px]`}
+                                        px-6 py-2 text-white mt-5 ml-32 transform transition duration-500`}
                         />
                 
                     </div>

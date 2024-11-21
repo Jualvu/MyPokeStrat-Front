@@ -25,7 +25,7 @@ const Header = (): JSX.Element => {
           to="/"
           className={ ({isActive}) => {
             return `border-2 border-transparent hover:border-gray-400 
-            hover:border-2 bg-transparent cursor-pointer rounded-xl
+            hover:border-2 bg-transparent cursor-pointer rounded-xl transform transition duration-500
             px-8 py-3 ${isActive ? 'text-white' : 'text-gray-400'}`}
             }
           >
@@ -36,7 +36,7 @@ const Header = (): JSX.Element => {
           to="/searchPokemon"
           className={ ({isActive}) => {
             return `border-2 border-transparent hover:border-white 
-            hover:border-2 bg-transparent cursor-pointer rounded-xl
+            hover:border-2 bg-transparent cursor-pointer rounded-xl transform transition duration-500
             px-8 py-3 ${isActive ? 'text-white' : 'text-gray-400'}`}
             }
           >
