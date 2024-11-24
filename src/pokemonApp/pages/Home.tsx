@@ -9,6 +9,7 @@ import { PokemonInTeam } from "../context/types/pokemonContextTypes";
 import { PokemonAIContext } from "../context/AI_PokemonTeam/PokemonAIContext";
 import { LoadingCard } from "../components/LoadingCard";
 import Header from "../components/Header";
+import { PokemonAITeamList } from "../components/PokemonAiTeamList";
 
 
 const Home = (): JSX.Element => {
@@ -204,14 +205,12 @@ const Home = (): JSX.Element => {
                           animate__animated animate__fadeInLeft">
                   VS
                 </h1>
-                  <PokemonTeamList
+                  <PokemonAITeamList
                     pokemonList={
                       pokemonAITeamState?.pokemonTeam ? pokemonAITeamState.pokemonTeam : []
                     }
                     getSelectedPokemonOnClick={() => {}}
                     titleText="Best counter to Rival's team"
-                    pokemonLeftCount={false}
-                    isRemovePokemonAnimation={false}
                   />
               </div>
             </div>

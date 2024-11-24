@@ -12,7 +12,7 @@ export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, ti
 
 
   return (
-    <div className="bg-indigo-950 w-7/12 min-h-dvh h-full
+    <div className="bg-indigo-950 w-full min-h-dvh h-full
         inline-block rounded-3xl opacity-90 animate__animated animate__fadeInLeft">
 
         <div className="flex justify-center gap-8 mt-5 ml-10 mr-10 opacity-90">
