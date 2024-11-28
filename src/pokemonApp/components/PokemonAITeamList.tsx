@@ -24,18 +24,18 @@ export const PokemonAITeamList = ({pokemonList = [], getSelectedPokemonOnClick, 
                 pokemonList ?
                 pokemonList.map( (pokemonInTeam: PokemonInTeam) => {
                     return (
-                        <div className="flex w-fit">
+                        // <div className="flex w-fit">
                             <PokemonSmallCard
                             key={pokemonInTeam.id}
                             pokemonInTeam={pokemonInTeam}
                             onClickGetPokemon={getSelectedPokemonOnClick}
                             isRemovePokemonAnimation={false}/>
 
-                            <p key={`${pokemonInTeam.id}-message`}>
+                            /* <p key={`${pokemonInTeam.id}-message`}>
                                 Message
-                            </p>
+                            </p> */
 
-                        </div>
+                        // </div>
                     )
                 })
                 :
