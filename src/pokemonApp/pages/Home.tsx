@@ -9,7 +9,7 @@ import { PokemonInTeam } from "../context/types/pokemonContextTypes";
 import { PokemonAIContext } from "../context/AI_PokemonTeam/PokemonAIContext";
 import { LoadingCard } from "../components/LoadingCard";
 import Header from "../components/Header";
-import { PokemonAITeamList } from "../components/PokemonAiTeamList";
+import { PokemonAITeamList } from "../components/PokemonAITeamList";
 
 
 const Home = (): JSX.Element => {

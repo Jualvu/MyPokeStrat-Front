@@ -22,7 +22,6 @@ export const PokemonAIProvider = ({children}: {children: React.ReactNode}) => {
 
     const createPokemonAITeam = (pokemonIdList: { pokemonTeam: string }) => {
 
-
         axios.post(`${import.meta.env.VITE_MYPOKESTRAT_API_URL}/api/v1/pokemonAITeam/generateTeamAnyPokemon`, pokemonIdList)
         .then( ({data}) => {
             const generatedResponseJSON = JSON.parse(data.data.content);
