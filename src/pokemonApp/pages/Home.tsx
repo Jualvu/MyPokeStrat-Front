@@ -27,6 +27,7 @@ const Home = (): JSX.Element => {
     createPokemonAITeam: () => {}
   };
 
+  console.log(import.meta.env.VITE_MYPOKESTRAT_API_URL);
 
   //states
   const [inputText, setInputText] = useState<string>('');
