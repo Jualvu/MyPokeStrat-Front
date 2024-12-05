@@ -12,13 +12,14 @@ const App = ():JSX.Element => {
 
   //get all pokemon names and ids to fill the data once
   useEffect( () => {
+    console.log('prueba')
     const {pokemonNameList, indexList, hasError} = getPokemonNameList();
     if (!hasError){
         setAllPokemonNameData(pokemonNameList);
         setAllPokemonIdData(indexList);
     }
 
-  }, [])
+  }, []);
 
     return(
     <StrictMode>

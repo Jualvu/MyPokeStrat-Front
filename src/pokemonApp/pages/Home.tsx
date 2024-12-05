@@ -15,7 +15,7 @@ import { PokemonAITeamList } from "../components/PokemonAITeamList";
 const Home = (): JSX.Element => {
   
 
-  // const pokemonContext = useContext( PokemonContext );
+  //CONTEXTS
   const { pokemonTeamState, handleNewPokemon, handleRemovePokemon } = useContext( PokemonContext ) || {
     pokemonTeamState: [], 
     handleNewPokemon: () => {}, 
@@ -37,6 +37,8 @@ const Home = (): JSX.Element => {
   const [selectedPokemon, setSelectedPokemon] = useState<PokemonInTeam>();
   const [loadingModalAnimation, setLoadingModalAnimation] = useState('animate__animated animate__fadeIn')
 
+
+
   const onGeneratePokemonTeam = () => {
     // generate only if rivals team is exactly 6
     if( pokemonTeamState && pokemonTeamState?.length === 6){
@@ -56,7 +58,7 @@ const Home = (): JSX.Element => {
         setLoadingModalAnimation('animate__animated animate__fadeOut')
         setShowChargingScreen(false)
         setLoadingModalAnimation('animate__animated animate__fadeIn')
-      }, 1000);
+      }, 1500);
     }
   },[pokemonAITeamState])
 
@@ -68,7 +70,6 @@ const Home = (): JSX.Element => {
       setAddButtonStyleEnable(true);
     }
   }, [pokemonTeamState])
-
   
   const onInputChange = (newText: string) => {
     setInputText(newText);
@@ -140,7 +141,7 @@ const Home = (): JSX.Element => {
       
         <div
           className="bg-transparent overflow-visible h-svw w-svw
-          pb-28 grid justify-items-center mt-10 animate__animated animate__fadeIn "
+           grid justify-items-center mt-10 animate__animated animate__fadeIn "
         >
 
             <h1 className="text-5xl text-white mt-4">
@@ -164,7 +165,7 @@ const Home = (): JSX.Element => {
             }
               
 
-              <div className="flex justify-between">
+              {/* <div className="flex justify-between">
                 <Button
                 text={`Add Pokemon`}
                   onClickFunc={onShowFormEmpty}
@@ -176,47 +177,117 @@ const Home = (): JSX.Element => {
                     `text-gray-500 bg-gray-800 p-3 rounded-xl m-4 w-1/6 cursor-auto text-xl`
                   }
                 />
-                <Button
-                text={`Generate Pokemon Team`}
-                  onClickFunc={onGeneratePokemonTeam}
-                  style={
-                    addButtonStyleEnable ?
-                    `text-gray-500 bg-gray-800 p-3 rounded-xl m-4  w-3/12 cursor-auto text-xl`
-                    :
-                    `text-gray-200 bg-roseCustom p-3 rounded-xl m-4  w-3/12
-                    hover:scale-110 cursor-pointer text-xl transform transition duration-500`
-                    
-                  }
-                />
-                
-              </div>
-              
-              <div className="flex justify-between">
- 
-                <PokemonTeamList
-                  pokemonList={pokemonTeamState ? pokemonTeamState : []}
-                  getSelectedPokemonOnClick={onShowRemovePokemonForm}
-                  titleText="Rival's team"
-                  pokemonLeftCount={true}
-                  isRemovePokemonAnimation={true}
-                />
 
-                <h1 className="text-white text-6xl text-center justify-self-center self-center w-2/5
-                          animate__animated animate__fadeInLeft">
-                  VS
-                </h1>
-                  <PokemonAITeamList
-                    pokemonList={
-                      pokemonAITeamState?.pokemonTeam ? pokemonAITeamState.pokemonTeam : []
+                <div>
+                  <Button
+                  text={`Generate Pokemon Team with any Pokemon`}
+                    onClickFunc={onGeneratePokemonTeam}
+                    style={
+                      addButtonStyleEnable ?
+                      `text-gray-500 bg-gray-800 p-3 rounded-xl m-4  w-3/12 cursor-auto text-xl`
+                      :
+                      `text-gray-200 bg-roseCustom p-3 rounded-xl m-4  w-3/12
+                      hover:scale-110 cursor-pointer text-xl transform transition duration-500`
+                      
                     }
-                    getSelectedPokemonOnClick={() => {}}
-                    titleText="Best counter to Rival's team"
                   />
-              </div>
+                  <Button
+                  text={`Generate Pokemon Team based on my Team`}
+                    onClickFunc={onGeneratePokemonTeam}
+                    style={
+                      addButtonStyleEnable ?
+                      `text-gray-500 bg-gray-800 p-3 rounded-xl m-4  w-3/12 cursor-auto text-xl`
+                      :
+                      `text-gray-200 bg-roseCustom p-3 rounded-xl m-4  w-3/12
+                      hover:scale-110 cursor-pointer text-xl transform transition duration-500`
+                      
+                    }
+                  />
+                </div>
+                
+                
+              </div> */}
+              
+              
             </div>
 
             <footer> ad </footer>
 
+        </div>
+
+        <div className="flex justify-between pl-52 pr-52 ml-16 pb-48">
+ 
+          <div className="flex w-4/5">
+              <div className="grid">
+                <Button
+                text={`Add Pokemon`}
+                  onClickFunc={onShowFormEmpty}
+                  style={
+                    addButtonStyleEnable ?
+                    `text-gray-200 bg-roseCustom p-3 pl-4 pr-4 rounded-xl m-4 w-fit text-xl
+                    hover:scale-110 cursor-pointer transform transition duration-500`
+                    :
+                    `text-gray-500 bg-gray-800 p-3 pl-4 pr-4 rounded-xl m-4 w-fit cursor-auto text-xl`
+                  }
+                />
+
+                <PokemonTeamList
+                pokemonList={pokemonTeamState ? pokemonTeamState : []}
+                getSelectedPokemonOnClick={onShowRemovePokemonForm}
+                titleText="Rival's team"
+                pokemonLeftCount={true}
+                isRemovePokemonAnimation={true}
+                />
+              </div>
+            
+
+            <h1 className="text-white text-6xl text-center justify-self-center self-center p-10
+                      animate__animated animate__fadeInLeft">
+              VS
+            </h1>
+
+          </div>
+                  
+              <div className="inline-block">
+                <div className="flex justify-between">
+
+                    <Button
+                    text={`Generate Pokemon Team with any Pokemon`}
+                      onClickFunc={onGeneratePokemonTeam}
+                      style={
+                        addButtonStyleEnable ?
+                        `text-gray-500 bg-gray-800 p-3 pl-4 pr-4 rounded-xl m-4 h-fit w-fit cursor-auto text-xl`
+                        :
+                        `text-gray-200 bg-roseCustom p-3 pl-4 pr-4 rounded-xl m-4 h-fit w-fit
+                        hover:scale-110 cursor-pointer text-xl transform transition duration-500`
+                        
+                      }
+                    />
+                    <Button
+                    text={`Generate Pokemon Team based on my Team`}
+                      onClickFunc={onGeneratePokemonTeam}
+                      style={
+                        addButtonStyleEnable ?
+                        `text-gray-500 bg-gray-800 p-3 pl-4 pr-4 rounded-xl m-4 h-fit w-fit cursor-auto text-xl`
+                        :
+                        `text-gray-200 bg-green-900 p-3 pl-4 pr-4 rounded-xl m-4 h-fit w-fit
+                        hover:scale-110 cursor-pointer text-xl transform transition duration-500`
+                        
+                      }
+                    />
+                </div>
+
+                <PokemonAITeamList
+                pokemonList={
+                  pokemonAITeamState?.pokemonTeam ? pokemonAITeamState.pokemonTeam : []
+                }
+                getSelectedPokemonOnClick={() => {}}
+                titleText="Best counter to Rival's team"
+                />
+
+              </div>
+          
+            
         </div>
     </>
   );
