@@ -5,28 +5,26 @@ export type PokemonInTeam = {
     pokemon: Pokemon;
 }
 
-export type PokemonTeamAndMessage = {
-    pokemonTeam: PokemonInTeam[],
+export type PokemonAndMessage = {
+    pokemon: PokemonInTeam,
     message: string
 }
+
+export type PokemonTeamAndMessageList = {
+    pokemonAITeam: PokemonAndMessage[]
+}
  
+
+
 export type PokemonReducerAction = {
     type: string;
     payload: PokemonInTeam;
 }
 
-// export type PokemonAIReducerAction = {
-//     type: string;
-//     payload: {
-//         pokemonInTeam: PokemonInTeam,
-//         message: string;
-//     };
-// }
-
 export type PokemonAIReducerAction = {
     type: string;
     payload: {
-        pokemonTeamAndMessage: PokemonTeamAndMessage
+        pokemonTeamAndMessageList: PokemonTeamAndMessageList
     };
 }
 

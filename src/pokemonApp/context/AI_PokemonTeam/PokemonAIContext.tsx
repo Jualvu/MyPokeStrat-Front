@@ -1,11 +1,10 @@
 import { createContext } from "react";
-import { PokemonTeamAndMessage } from "../types/pokemonContextTypes";
+import { PokemonTeamAndMessageList } from "../types/pokemonContextTypes";
 
 export type contextProperties = {
-    pokemonAITeamState: PokemonTeamAndMessage | undefined,
-    createPokemonAITeam: (pokemonIdList: {
-        pokemonTeam: string
-    }) => void
+    pokemonAITeamState: PokemonTeamAndMessageList | undefined,
+    createPokemonAITeam: (pokemonNameList: {pokemonTeam: string}) => void,
+    createPokemonAITeamFromMyPokemon: (pokemonNameList: {pokemonTeam: string}) => void
 }
  
 

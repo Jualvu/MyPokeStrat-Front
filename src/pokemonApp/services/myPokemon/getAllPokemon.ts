@@ -6,7 +6,7 @@ export const getAllPokemon = async() => {
     let isLoading = true;
     let hasError = false;
     try{
-        const pokemonList = await axios.get('http://localhost:5000/api/v1/pokemon');
+        const pokemonList = await axios.get(`${import.meta.env.VITE_MYPOKESTRAT_API_URL}/api/v1/pokemon`);
         isLoading = false;
         return { pokemonListFromDB: pokemonList.data.data , isLoadingPokemonFromDB: isLoading, hasError };
     }catch(error){

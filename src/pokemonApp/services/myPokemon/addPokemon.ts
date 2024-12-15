@@ -1,7 +1,6 @@
 import axios from "axios";
 import Pokemon from "../../types/PokemonType";
 
-
 export const addPokemon = (pokemon: Pokemon) => {
 
     try {
@@ -13,7 +12,7 @@ export const addPokemon = (pokemon: Pokemon) => {
             pokemonImage: pokemon.img
           }
     
-         axios.post('http://localhost:5000/api/v1/pokemon', pokemonToAdd)
+         axios.post(`${import.meta.env.VITE_MYPOKESTRAT_API_URL}/api/v1/pokemon`, pokemonToAdd)
        .then((response) => {
         console.log(response);
        })

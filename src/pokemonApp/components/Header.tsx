@@ -1,6 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../auth/context/AuthContext";
 
 const Header = (): JSX.Element => {
+
+  const { logoutUser } = useContext(AuthContext) || {logoutUser: () => {}};
+
+  const navigate = useNavigate();
+
   return (
     <>
     <header
@@ -42,6 +49,19 @@ const Header = (): JSX.Element => {
           >
             My Pokemon 
         </NavLink>
+
+        <label 
+          className={
+            `border-2 border-transparent hover:border-2 bg-transparent cursor-pointer rounded-xl 
+            transform transition duration-500 px-8 py-3 text-red-400 hover:border-red-800`
+          }
+            onClick={() => {
+                logoutUser();
+                navigate('/auth/login');
+            }}
+          >
+              Log out     
+        </label>
         
       </ul>
     </header>

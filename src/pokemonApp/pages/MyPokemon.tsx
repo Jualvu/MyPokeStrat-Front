@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import PokemonFoundCard from "../components/PokemonFoundCard";
 import { DropDownList } from "../components/shared/DropDownList";
 import Header from "../components/Header";
@@ -10,11 +10,14 @@ import { addPokemon } from "../services/myPokemon/addPokemon";
 import { getAllPokemon } from "../services/myPokemon/getAllPokemon";
 import { deletePokemonFromDB } from "../services/myPokemon/deletePokemon";
 import { RemovePokemonCard } from "../components/RemovePokemonCard";
+import { AuthContext } from "../../auth/context/AuthContext";
 
 
 const MyPokemon = (): JSX.Element => {
 
-
+  const { authState } = useContext(AuthContext) || {
+    logUser: () => {}
+  };
   //states
   const [inputText, setInputText] = useState<string>('');
   const [showPokemonRemoveForm, setShowPokemonRemoveForm] = useState<boolean>(false);
@@ -61,12 +64,14 @@ const MyPokemon = (): JSX.Element => {
   //add pokemon to database
   const handleAddPokemonToDB = async (pokemon: Pokemon) => {
 
+    console.log(authState);
     try {
       const response = await addPokemon(pokemon);
       console.log(response);  
       setTimeout(() => {
         assignPokemonDBList();
-        }, 100)
+      }, 100);
+      setInputText('');
      
 
     }catch(error){

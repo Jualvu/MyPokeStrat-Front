@@ -1,9 +1,9 @@
-import { PokemonInTeam } from "../context/types/pokemonContextTypes"
+import { PokemonAndMessage, PokemonInTeam, PokemonTeamAndMessageList } from "../context/types/pokemonContextTypes"
 import { PokemonSmallCard } from "./PokemonSmallCard"
 
-export const PokemonAITeamList = ({pokemonList = [], getSelectedPokemonOnClick, titleText}: 
+export const PokemonAITeamList = ({pokemonAndMessagesList = {pokemonAITeam:[]}, getSelectedPokemonOnClick, titleText}: 
     {
-        pokemonList: PokemonInTeam[],
+        pokemonAndMessagesList: PokemonTeamAndMessageList,
         getSelectedPokemonOnClick: (pokemonInTeam: PokemonInTeam) => void,
         titleText: string,
     }) => {
@@ -21,25 +21,24 @@ export const PokemonAITeamList = ({pokemonList = [], getSelectedPokemonOnClick, 
 
         <div className="justify-items-center inline-block">
             {
-                pokemonList ?
-                pokemonList.map( (pokemonInTeam: PokemonInTeam) => {
+                pokemonAndMessagesList ?
+                pokemonAndMessagesList.pokemonAITeam.map( ( pokemonAndMessage: PokemonAndMessage) => {
                     return (
-                        <div className="flex w-full pl-4 pr-4" key={`${pokemonInTeam.id}-div`}>
-                            <PokemonSmallCard
-                            key={pokemonInTeam.id}
-                            pokemonInTeam={pokemonInTeam}
-                            onClickGetPokemon={getSelectedPokemonOnClick}
-                            isRemovePokemonAnimation={false}/>
+                        <div className="flex justify-between w-full pl-4 pr-4" 
+                            key={`${pokemonAndMessage.pokemon.id}-div`}>
+                            <div className="w-full">
+                                <PokemonSmallCard
+                                pokemonInTeam={pokemonAndMessage.pokemon}
+                                onClickGetPokemon={getSelectedPokemonOnClick}
+                                isRemovePokemonAnimation={false}/>
+                            </div>
+                            
 
-                            <span className="inline-block m-4 ml-10 bg-slate-600 rounded-xl">
-                                <p className="text-gray-400 text-sm ">
-                                    Message personalziado Message personaage personalziado 
-                                    Message personalziado Message personaage personalziado 
-                                    Message personalziado Message personaage personalziado 
-                                    Message personalziado Message personaage personalziado 
-                                    s
+                            <div className="mb-4 ml-10 bg-indigo-900 rounded-xl opacity-80 w-[70%]">
+                                <p className="text-gray-100 text p-4">
+                                    {pokemonAndMessage.message}
                                 </p> 
-                            </span>
+                            </div>
                             
 
                         </div>
