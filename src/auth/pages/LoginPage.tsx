@@ -66,7 +66,7 @@ export const LoginPage = () => {
             
             <h1 className="text-3xl text-gray-300">Log in to MyPokeStrat</h1>
 
-            <img src="/assets/gengar.gif" alt="gengar" className="h-44 " />
+            <img src="https://www.icegif.com/wp-content/uploads/2023/05/icegif-937.gif" alt="gengar" className="h-44 " />
 
             <div className="grid">
                 <p className="text-xl text-gray-300 mb-1">Username</p>
