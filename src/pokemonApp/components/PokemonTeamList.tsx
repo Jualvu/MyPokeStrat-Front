@@ -12,10 +12,10 @@ export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, ti
 
 
   return (
-    <div className="bg-indigo-950 w-full min-h-dvh h-full
+    <div className="bg-indigo-950 w-fit h-fit min-h-96
         inline-block rounded-3xl opacity-90 animate__animated animate__fadeInLeft">
 
-        <div className="flex justify-center gap-8 mt-5 ml-10 mr-10 opacity-90">
+        <div className="flex justify-center gap-8 mt-5 ml-10 mr-10  mb-4 opacity-90">
             <h1 className="text-white text-xl">
                 {titleText}
             </h1>
@@ -38,17 +38,21 @@ export const PokemonTeamList = ({pokemonList = [], getSelectedPokemonOnClick, ti
                 null
             }
         </div>
-
+ 
         <div className="justify-items-center grid">
             {
                 pokemonList ?
                 pokemonList.map( (pokemonInTeam: PokemonInTeam) => {
                     return (
-                        <PokemonSmallCard
-                        key={pokemonInTeam.id}
-                        pokemonInTeam={pokemonInTeam}
-                        onClickGetPokemon={getSelectedPokemonOnClick}
-                        isRemovePokemonAnimation={isRemovePokemonAnimation}/>
+
+                        <div className="pl-4 pr-4 w-full"
+                        key={pokemonInTeam.id}>
+                            <PokemonSmallCard
+                            pokemonInTeam={pokemonInTeam}
+                            onClickGetPokemon={getSelectedPokemonOnClick}
+                            isRemovePokemonAnimation={isRemovePokemonAnimation}/>
+                        </div>
+                        
                     )
                 })
                 :

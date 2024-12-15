@@ -16,11 +16,6 @@ export const DropDownList = ({dataList, isLoading, value, onChange, extraStyle, 
     const [isSearching, setIsSearching] = useState<boolean>(false);
 
 
-    const divListContainerStyle = `rounded-md absolute z-30 grid items-start justify-start
-            shadow-2xl overflow-visible scrollbar-thumb-rounded-full scrollbar-track-rounded-full 
-            scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-400 overflow-y-scroll
-            pb-28 ${extraStyle}`;
-
     const divListRef = useRef<HTMLDivElement>(null);
     const inputTextRef = useRef<HTMLInputElement>(null);
     
@@ -51,51 +46,60 @@ export const DropDownList = ({dataList, isLoading, value, onChange, extraStyle, 
 
   return (
     <>
-    <InputText
-        value={value}
-        onChange={onChange}
-        placeHolder='Pokemon...'
-        extraStyle={inputStyle}
-        onFocus={() => setIsSearching(true)}
-        ref={inputTextRef}
-    />
+    <div className='grid relative'>
+        <InputText
+            value={value}
+            onChange={onChange}
+            placeHolder='Pokemon...'
+            extraStyle={inputStyle}
+            onFocus={() => setIsSearching(true)}
+            ref={inputTextRef}
+        />
 
-    {
-        isSearching ?
-        (
-            <div
-                className={divListContainerStyle}
-                ref={divListRef}>
-                <p 
-                className={`text-lg h-full p-2 text-gray-200 cursor-pointer ${listItemStyle}`}
-                >Pokemon found: {filteredData.length}</p>
-                <hr/>
-                {
-                    isLoading ? //If it is loading, show charging
-                    null
-                    : //If data is loaded show it
-                    filteredData.map( (value, index) => {
-                        return(
-                        <div 
-                        className={`text-lg h-full w-full p-2 cursor-pointer text-gray-200 ${listItemStyle}`}
-                        onClick={() => {
-                            onChange(value)
-                            setIsSearching(false);
-                            }
+        {
+                isSearching ?
+                (
+                    <div
+                        className={`rounded-md absolute top-full z-30 grid items-start justify-start
+                            shadow-2xl overflow-visible scrollbar-thumb-rounded-full scrollbar-track-rounded-full 
+                            scrollbar-thin scrollbar-thumb-slate-600 scrollbar-track-slate-400 overflow-y-scroll
+                            pb-28 ${extraStyle}`}
+                        ref={divListRef}>
+                        <p 
+                        className={`text-lg h-full p-2 text-gray-200 cursor-pointer ${listItemStyle}`}
+                        >Pokemon found: {filteredData.length}</p>
+                        <hr/>
+                        {
+                            isLoading ? //If it is loading, show charging
+                            null
+                            : //If data is loaded show it
+                            filteredData.map( (value, index) => {
+                                return(
+                                <div 
+                                className={`text-lg h-full w-full p-2 cursor-pointer text-gray-200 ${listItemStyle}`}
+                                onClick={() => {
+                                    onChange(value)
+                                    setIsSearching(false);
+                                    }
+                                }
+                                key={index}> 
+                                    {value }
+                                </div>
+                                )
+
+                            })
+                            
                         }
-                        key={index}> 
-                            {value }
-                        </div>
-                        )
+                    </div>
+                )
+                :
+                null
+            }
 
-                    })
-                    
-                }
-            </div>
-        )
-        :
-        null
-    }
+    </div>
+    
+
+    
         
     </>
   )

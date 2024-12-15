@@ -37,45 +37,48 @@ const SelectPokemonCard = ({inputText, onChangeInputText, isShowForm, onCloseFor
                 (
 
                     <div className={`fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-70 ${animation}`}>
-                        <div className={`bg-indigo-950 rounded-xl p-6 
-                    w-[600px] h-[380px] grid justify-items-start shadow-2xl`}>
+                        <div className={`bg-indigo-950 rounded-xl p-6 w-[35%] h-[40%] inline-block shadow-2xl`}>
 
-                    <div 
-                    className={`justify-self-end cursor-pointer`}
-                    onClick={() => {
-                        setAnimation('animate__animated animate__fadeOut');
-                        setTimeout(() => {
-                            onCloseForm();
-                            setAnimation('animate__animated animate__fadeIn');
-                        }, 500);
-                        }
-                    }
-                    >
-                        <MdOutlineClose color="white" size='30'/>
-                    </div>
-                    <DropDownList
-                        dataList = {allPokemonNameData} 
-                        isLoading = {false}
-                        value={inputText}
-                        onChange={onInputChange}
-                        extraStyle={`w-[300px] h-[200px] ml-[100px] mt-[75px] bg-indigo-950 border-2 border-gray-400`}
-                        inputStyle={`bg-indigo-950 border-2 border-solid border-gray-400 border-inherit
-                             mb-[10px] ml-[100px] text-gray-200`}
-                        listItemStyle="w-[286px] text-gray-300 hover:bg-indigo-900"
-                    />
-                    <PokemonFoundCard
-                    pokemonName={
-                        allPokemonNameData?.includes(inputText) || allPokemonIdData.includes(inputText) ?
-                        (
-                        inputText 
-                        )
-                        :
-                        ''
-                    }
-                    extraStyle="h-[200px] "
-                    imgStyle="w-[200px] h-[200px] ml-3"
-                    getPokemon={(pokemonFound) => handleAddPokemon(pokemonFound)}
-                    />
+                            <div 
+                                className={`justify-self-end cursor-pointer`}
+                                onClick={() => {
+                                    setAnimation('animate__animated animate__fadeOut');
+                                    setTimeout(() => {
+                                        onCloseForm();
+                                        setAnimation('animate__animated animate__fadeIn');
+                                    }, 500);
+                                    }
+                                }
+                            >
+                                <MdOutlineClose color="white" size='30'/>
+                            </div>
+
+                            <div>
+                                <DropDownList
+                                dataList = {allPokemonNameData} 
+                                isLoading = {false}
+                                value={inputText}
+                                onChange={onInputChange}
+                                extraStyle="bg-indigo-950 border-2 border-gray-400 ml-10 h-40"
+                                inputStyle="bg-indigo-950 border-2 border-solid border-gray-800 border-inherit text-gray-200 ml-10"
+                                listItemStyle="hover:bg-indigo-900 text-black w-72"
+                                />
+                                <PokemonFoundCard
+                                pokemonName={
+                                    allPokemonNameData?.includes(inputText) || allPokemonIdData.includes(inputText) ?
+                                    (
+                                    inputText 
+                                    )
+                                    :
+                                    ''
+                                }
+                                extraStyle="p-4 m-4"
+                                imgStyle="w-36 h-36"
+                                getPokemon={(pokemonFound) => handleAddPokemon(pokemonFound)}
+                                />
+                            </div>
+                            
+                            
                         </div>
                     </div>
                 )

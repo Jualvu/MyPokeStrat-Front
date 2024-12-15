@@ -6,6 +6,7 @@ import { PokemonAIProvider } from "./pokemonApp/context/AI_PokemonTeam/PokemonAI
 import { AppRouter } from "./router/AppRouter.tsx";
 import getPokemonNameList from "./pokemonApp/helpers/getPokemonNameList.ts";
 import { setAllPokemonIdData, setAllPokemonNameData } from "./pokemonApp/data/AllPokemonNameData";
+import { AuthProvider } from "./auth/context/AuthProvider.tsx";
 
 
 const App = ():JSX.Element => {
@@ -18,16 +19,18 @@ const App = ():JSX.Element => {
         setAllPokemonIdData(indexList);
     }
 
-  }, [])
+  }, []);
 
     return(
     <StrictMode>
       <BrowserRouter>
+      <AuthProvider>
         <PokemonProvider>
           <PokemonAIProvider>
             <AppRouter/>
           </PokemonAIProvider>
         </PokemonProvider>
+      </AuthProvider>
     </BrowserRouter>
   </StrictMode>
     )
