@@ -1,8 +1,6 @@
 import axios from "axios";
 
 export const loginUser = async(username: string, password: string) => {
-
-
     try {
         const userJSON = {
             username,

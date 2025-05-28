@@ -28,7 +28,7 @@ export const LoginPage = () => {
     const nameInput = name.trim();
     const passInput = password.trim();
 
-    
+
     const user: user = {
       name: name
     }

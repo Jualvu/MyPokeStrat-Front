@@ -29,26 +29,26 @@ export const PokemonSmallCard = ({pokemonInTeam, onClickGetPokemon, isRemovePoke
             onClick={handleClick}
             ref={pokemonRef}
         >
-        <div>
-            <p className="text-indigo-200 text-lg ml-3">
-                {pokemonInTeam.pokemon.name}
-            </p>  
-            <p className="text-indigo-300 text-lg ml-3">
-                types: {
-                        pokemonInTeam.pokemon.types.map( (type: string) => {
-                            return type + ' '
-                        })
-                        } 
-            </p>  
-        </div>
+            <div>
+                <p className="text-indigo-200 text-lg ml-3">
+                    {pokemonInTeam.pokemon.name}
+                </p>  
+                <p className="text-indigo-300 text-lg ml-3">
+                    types: {
+                            pokemonInTeam.pokemon.types.map( (type: string) => {
+                                return type + ' '
+                            })
+                            } 
+                </p>  
+            </div>
 
-        <div>
-        <img 
-            src={pokemonInTeam.pokemon.img || ''} 
-            className={'object-cover w-40 h-40 ml-10 mr-5'}/>
-        </div>
+            <div>
+                <img 
+                    src={pokemonInTeam.pokemon.img || ''} 
+                    className={'object-cover w-40 h-40 ml-10 mr-5'}/>
+                </div>
 
-        </div>
+            </div>
 
     </>
   )
