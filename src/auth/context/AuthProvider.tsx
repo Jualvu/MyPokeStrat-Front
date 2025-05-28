@@ -37,30 +37,6 @@ export const AuthProvider = ({children}: {children: React.ReactNode}) => {
         
         dispatch(action);
 
-        // try{
-        //     const action: authReducerAction = {
-        //         type: '[AUTH] Log in user',
-        //         payload: {
-        //             logged: true,
-        //             user: user
-        //         }
-        //     }
-
-        //     // const { loggingSuccessful } = await loginUser(user.name, password);
-
-        //     // if(loggingSuccessful){
-
-        //     //     localStorage.setItem('authState', JSON.stringify(action.payload));
-        
-        //     //     dispatch(action);
-        //     //     return true;
-        //     // }
-        //     return false;
-
-        // }catch(error){  
-        //     console.log(error);
-        //     return false;
-        // }
         
     }
 

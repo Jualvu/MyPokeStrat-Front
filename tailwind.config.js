@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 const colorsDefault = require('tailwindcss/colors')
+import { colorsDefault2, scrollbars} from 'tailwindcss'
+
 
 export default {
   content: [
