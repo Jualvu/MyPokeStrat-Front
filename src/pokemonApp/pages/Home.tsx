@@ -23,7 +23,7 @@ const Home = (): JSX.Element => {
     handleRemovePokemon: () => {}
   };
 
-  const { pokemonAITeamState, createPokemonAITeam, createPokemonAITeamFromMyPokemon } = useContext( PokemonAIContext) || {
+  const { pokemonAITeamState, createPokemonAITeam } = useContext( PokemonAIContext) || {
     pokemonTeamState: [], 
     createPokemonAITeam: () => {},
     createPokemonAITeamFromMyPokemon: () => {}
@@ -54,17 +54,17 @@ const Home = (): JSX.Element => {
 
   }
 
-  const onGeneratePokemonTeamFromMyPokemon = () => {
-    // generate only if rivals team is exactly 6
-    if( pokemonTeamState && pokemonTeamState?.length === 6){
-      setShowChargingScreen(true);
-      const pokemonTeamJSONFormat = {
-        pokemonTeam: `[${pokemonTeamState?.map( (pokemon: PokemonInTeam) => {return pokemon.pokemon.name}).toString()}]`
-      }
-      createPokemonAITeamFromMyPokemon(pokemonTeamJSONFormat);
-    }
+  // const onGeneratePokemonTeamFromMyPokemon = () => {
+  //   // generate only if rivals team is exactly 6
+  //   if( pokemonTeamState && pokemonTeamState?.length === 6){
+  //     setShowChargingScreen(true);
+  //     const pokemonTeamJSONFormat = {
+  //       pokemonTeam: `[${pokemonTeamState?.map( (pokemon: PokemonInTeam) => {return pokemon.pokemon.name}).toString()}]`
+  //     }
+  //     createPokemonAITeamFromMyPokemon(pokemonTeamJSONFormat);
+  //   }
 
-  }
+  // }
 
   useEffect( () => {
     if(pokemonAITeamState){
@@ -210,9 +210,13 @@ const Home = (): JSX.Element => {
                         hover:scale-110 cursor-pointer transform transition duration-500`
                       }
                     />
+
+                    
                   </div>
                   
-
+                    <p className="text-gray-400 text-md text-center m-2">
+                      [Click pokemon to delete]
+                    </p>
                   <PokemonTeamList
                   pokemonList={pokemonTeamState ? pokemonTeamState : []}
                   getSelectedPokemonOnClick={onShowRemovePokemonForm}
@@ -235,7 +239,7 @@ const Home = (): JSX.Element => {
               <div className="flex justify-between">
 
                   <Button
-                  text={`Generate Pokemon Team based on all Pokemon`}
+                  text={`Generate Pokemon Team`}
                     onClickFunc={onGeneratePokemonTeam}
                     style={
                       addButtonStyleEnable ?
@@ -246,7 +250,7 @@ const Home = (): JSX.Element => {
                       
                     }
                   />
-                  <Button
+                  {/* <Button
                   text={`Generate Pokemon Team based on my Team`}
                     onClickFunc={onGeneratePokemonTeamFromMyPokemon}
                     style={
@@ -257,7 +261,7 @@ const Home = (): JSX.Element => {
                       hover:scale-110 cursor-pointer lg:text-md sm:text-lg md:text-lg transform transition duration-500`
                       
                     }
-                  />
+                  /> */}
               </div>
                     
               <PokemonAITeamList

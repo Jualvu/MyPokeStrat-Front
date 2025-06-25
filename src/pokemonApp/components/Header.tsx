@@ -1,12 +1,13 @@
-import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../auth/context/AuthContext";
+// import { useContext } from "react";
+// import { NavLink, useNavigate } from "react-router-dom";
+// import { AuthContext } from "../../auth/context/AuthContext";
+import { NavLink } from "react-router-dom";
 
 const Header = (): JSX.Element => {
 
-  const { logoutUser } = useContext(AuthContext) || {logoutUser: () => {}};
+  // const { logoutUser } = useContext(AuthContext) || {logoutUser: () => {}};
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <>
@@ -39,7 +40,7 @@ const Header = (): JSX.Element => {
             Home
         </NavLink>
 
-        <NavLink 
+        {/* <NavLink 
           to="/myPokemon"
           className={ ({isActive}) => {
             return `border-2 border-transparent hover:border-white 
@@ -48,9 +49,9 @@ const Header = (): JSX.Element => {
             }
           >
             My Pokemon 
-        </NavLink>
+        </NavLink> */}
 
-        <label 
+        {/* <label 
           className={
             `border-2 border-transparent hover:border-2 bg-transparent cursor-pointer rounded-xl 
             transform transition duration-500 px-8 py-3 text-red-400 hover:border-red-800`
@@ -61,7 +62,7 @@ const Header = (): JSX.Element => {
             }}
           >
               Log out     
-        </label>
+        </label> */}
         
       </ul>
     </header>
